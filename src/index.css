@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+body{
+  background-color:rgb(248, 248, 248);
+  font-size:14px;
+}
+.simple-login-container{
+  width:300px;
+  max-width:100%;
+  margin:50px auto;
+}
+.simple-login-container h2{
+  text-align:center;
+  font-size:20px;
+}
+
+.simple-login-container .btn-login{
+  background-color:#38B449;
+  color:#fff;
+}
+
+
+.or-box
+{
+    position: relative;
+    border-top: 1px solid #dfdfdf;
+    padding-top: 20px;
+    margin-top:10px;
+}
+.or
+{
+    color: #666666;
+    background-color: rgb(248, 248, 248);
+    position: absolute;
+    text-align: center;
+    top: -10px;
+    width: 40px;
+    left: 130px;
+}
