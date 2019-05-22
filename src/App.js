@@ -14,7 +14,7 @@ import axios from 'axios';
 
 class App extends Component {
     state = {
-        user: {}
+        user: null
     }
 
 
@@ -43,13 +43,14 @@ class App extends Component {
     }
 
 
+
     render() {
-        // console.log("THIS IS FROM APP.JS=============", this.state.user.email)
+        console.log("THIS IS FROM APP.JS=============", this.state.user)
         return (
             <Fragment>
 
                 {this.state.user === null ? (
-                    <ReactLoading type="bubbles" color="green" height={'10%'} width={'10%'} />
+                    <ReactLoading className="PageLoader" type="spinningBubbles" color="green" height={'14%'} width={'14%'} />
                 ) : this.state.user === false ? (
                     <Fragment>
                         <Switch>
@@ -61,7 +62,7 @@ class App extends Component {
                 ) : (
                             <Fragment>
                                 <Switch>
-                                    <Route exact path="/" user={this.state.user} component={Home} />
+                                    <Route exact path="/" user={this.state.user} component={(props) => { return <Home {...props} user={this.state.user.uid} /> }} />
                                 </Switch>
                             </Fragment>
                         )}
