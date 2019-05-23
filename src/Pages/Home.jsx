@@ -6,7 +6,9 @@ import fire from 'firebase'
 class Home extends Component {
 
 
-
+    state = {
+        amount: null
+    }
 
 
     //Logout 
@@ -14,7 +16,10 @@ class Home extends Component {
         fire.auth().signOut()
     }
 
-
+    retrieveAmount = (amount) => {
+        console.log('retrieved', amount)
+        this.setState({ amount })
+    }
 
     render() {
 
@@ -26,13 +31,13 @@ class Home extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-2">
-
+                            <h1>{this.state.amount}</h1>
                         </div>
                         <div className="col-md-7">
                             <h1 className="text-center">YOU ARE LOGGED IN</h1>
                             <br></br>
                             <h1 className="text-center">INCOME FORM</h1>
-                            <Income user={this.props.user} />
+                            <Income user={this.props.user} onClick={this.retrieveAmount} />
                         </div>
                         <div className="col-md-3">
                         </div>

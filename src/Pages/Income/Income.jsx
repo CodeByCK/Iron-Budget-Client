@@ -13,17 +13,16 @@ class Income extends Component {
     text: '',
     contentEditable: true,
     form: false,
-    editActive: false
+    editActive: false,
+    amount: 0
+
 
   }
 
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/api/paychecks/${this.state.user}`)
-      .then(paychecks => {
-        this.setState({
-          incomes: paychecks.data.response
-        })
-      })
+
+    this.updateIncomeAmount()
+
   }
 
 
@@ -59,24 +58,26 @@ class Income extends Component {
   }
 
   editIncome = (e) => {
-    // console.log(e.target.getAttribute("name"))
-    console.log("this is the attribute------->", e.target.getAttribute("name"))
-    console.log('this is the id of the row===>', e.target.getAttribute("id"))
+    // console.log("this is the attribute------->", e.target.getAttribute("name"))
+    // console.log('this is the id of the row===>', e.target.getAttribute("id"))
+    // let planned = e.target.getAttribute("name")
 
     let name = e.target.getAttribute("name")
-    // let planned = e.target.getAttribute("name")
     let id = e.target.getAttribute("id")
     let val = e.target.innerHTML;
-    console.log('val', val)
+    // console.log('val', val)
 
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/paychecks/editIncome/${id}`, {
       name,
       val
-    }).then(console.log("submited"))
-      .catch(err => {
-        console.log(err)
-      })
+    }).then(() => {
+      this.updateIncomeAmount()
+    }).catch(err => {
+      console.log(err)
+    })
   }
+
+
 
   showForm = () => {
     this.setState({
@@ -86,37 +87,47 @@ class Income extends Component {
 
 
 
-  // typeText =(e)=>{
-  //   // console.log("max count.... typing")
-  //   let text = e.target.innerHTML
-  //   console.log(text.length)
-  //   //e.target.innerHTML = ''
-  //   if(text.length > 5){
-  //     this.setState({
-
-  //       contentEditable:false
-  //    }) 
-  //   }else {
-  //     this.setState({
-
-  //       contentEditable:true
-  //    }) 
-  //   }
+  editActive = () => {
+    this.setState({
+      editActive: !this.state.editActive
+    })
+  }
 
 
 
-  // }
+
+  updateIncomeAmount = () => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api/paychecks/${this.state.user}`)
+      .then(paychecks => {
+        this.setState({
+          incomes: paychecks.data.response
+        })
+        {/* //! totalAmount() will update the state with the correct amount
+        //! onClick prop is to lift the amount state up to HOME */}
+
+        this.totalAmount()
+        this.props.onClick(this.state.amount)
+      })
+  }
+
+
+
+
+  totalAmount = () => {
+    let amount = 0;
+    this.state.incomes.map((items) => {
+      amount += Number(items.planned)
+    })
+    console.log('amoutnnnt', amount)
+    this.setState({ amount })
+  }
 
 
 
 
   render() {
-    // console.log("TESTTTTTTTT", this.state.incomes)
-    let amount = 0
     return (
       <Fragment>
-
-
         {/* //? ================== CARD SECTION ====================================== */}
 
         <div className="card incomeCard">
@@ -146,8 +157,9 @@ class Income extends Component {
                 {this.state.incomes.map((paychecks, i) => {
                   return (
                     <Fragment>
+
                       {/* //? ================== MAPPING INCOMES SECTION ====================================== */}
-                      <div className="row">
+                      <div className="row editActive">
                         <div className="col-4"
                           contentEditable="true"
                           data="name"
@@ -162,25 +174,25 @@ class Income extends Component {
 
                         </div>
                         <div
-                          className="col col-sm-4 text-right"
+                          className="col col-sm-4 text-right dollar"
                           contentEditable="true"
                           onBlur={this.editIncome}
                           id={paychecks._id}
                           name="planned" >
 
-                          $ {paychecks.planned}
+                          {paychecks.planned}
 
                         </div>
                         <div className="col col-sm-4 text-right">
                           $ 0.00
                       </div>
                       </div>
-
                       <hr></hr>
-
                     </Fragment>
                   )
                 })}
+
+
                 {/* //? ========================= FORM SECTION ====================================== */}
                 <form style={{ display: this.state.form === true ? "inline-block" : "none" }} onSubmit={this.submitHandler}>
                   <div className="row mb-2">
@@ -222,48 +234,17 @@ class Income extends Component {
                   </div>
 
                   <div className="col col-sm-4 text-right" >
-
-                    {this.state.incomes.map((items) => {
-                      amount += Number(items.planned)
-                    })}
-
-                    <strong> $ {amount}</strong>
+                    <strong> $ {this.state.amount}</strong>
                   </div>
+
                   <div className="col col-sm-4 text-right">
                     0
                     </div>
                 </div>
-
-
-
-
-                {/* <form onSubmit={this.submitHandler}>
-          <input type="text" name="name" placeholder="Paycheck #" value={this.state.name} onChange={this.eventHandler} required autoComplete="off" />
-          <input type="number" name="planned" placeholder="0.00" value={this.state.planned} onChange={this.eventHandler} required autoComplete="off" />
-          <button type="submit">SUBMIT</button>
-        </form> */}
-                {/* <div style={{ cursor: "pointer", color: "blue" }} onClick={this.showForm}>
-                  <i className="fas fa-plus text"></i>
-                  <strong> Add Paycheck</strong>
-                </div> */}
-
-
-
-
-
-
-
-
               </div>
             </div>
           </div>
         </div>
-
-
-
-
-
-
       </Fragment>
     );
   }

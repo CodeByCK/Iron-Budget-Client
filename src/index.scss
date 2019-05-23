@@ -64,3 +64,14 @@ body{
 }
 
 
+.editActive:focus-within {
+  // background: rgba(255, 255, 255, 0.329);
+  box-shadow:0px 2px 10px  rgba(0, 0, 0, 0.281);
+  padding: 10px;
+
+  
+}
+
+.dollar::before{
+  content:"$ "
+}
