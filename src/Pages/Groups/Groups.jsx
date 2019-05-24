@@ -13,14 +13,11 @@ class Groups extends Component {
     itemPlanned: '',
     groupId: '',
     form: false,
-    itemAmount: 0,
-    itemRefresh: false
+    itemAmount: 0
   }
 
   componentDidMount() {
-    // this.setState({
-    //   items: this.props.groups.items
-    // })
+
   }
 
   collapse = () => {
@@ -31,6 +28,16 @@ class Groups extends Component {
 
   }
 
+  // getItems = (e) => {
+  //   let groupId = e.target.getAttribute("id")
+
+  //   axios.get(`${process.env.REACT_APP_BASE_URL}/api/GroupItems/${groupId}`)
+  //     .then(items => {
+  //       this.setState({
+  //         items: items.data.response
+  //       })
+  //     })
+  // }
 
   editGroup = (e) => {
     // console.log("name", e.target.getAttribute("name"))
@@ -110,14 +117,28 @@ class Groups extends Component {
 
 
   deleteItem = (e) => {
+    e.preventDefault()
     let id = e.target.getAttribute('id')
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/deleteItem/${id}`)
-      .then(() => {
-        // this.updateIncomeAmount()
-        // this.props.getGroup()
+      .then(items => {
+
+        //! SOMETHING GOES HERE TO SET THE STATE TO THE CURRENT ITEMS
+        let itemCopy = [...this.state.items]
+        itemCopy.forEach((item, i) => {
+          if (item._id === id) {
+            itemCopy.splice(i, 1)
+          }
+        })
+        this.setState({
+          items: itemCopy
+        })
+
+        console.log(items)
+
       }).catch(err => {
         console.log(err)
       })
+    this.forceUpdate()
   }
 
 
