@@ -9,7 +9,10 @@ class Home extends Component {
 
 
     state = {
-        amount: null
+        amount: null,
+        groups: [],
+        itemRefresh: false
+
     }
 
 
@@ -22,14 +25,15 @@ class Home extends Component {
         console.log('retrieved', amount)
         this.setState({ amount })
     }
-    componentDidMount() {
 
+    componentDidMount() {
         this.getGroup()
         // this.totalItemAmount()
     }
 
+
     getGroup = () => {
-        let userId = this.state.user
+        let userId = this.props.user
 
         axios.get(`${process.env.REACT_APP_BASE_URL}/api/Group/${userId}`)
             .then(groups => {
@@ -38,11 +42,49 @@ class Home extends Component {
                     groups: groups.data.response
                 })
                 // this.totalItemAmount()
+
             }).catch(err => {
                 console.log(err)
             })
     }
 
+    createGroup = () => {
+        let user = this.props.user
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/createGroup`, {
+            user
+        }).then(response => {
+            this.setState({
+                groups: [...this.state.groups, response.data]
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+
+
+    deleteGroup = (e) => {
+        e.preventDefault()
+        console.log("clicked")
+        let id = e.target.getAttribute("id")
+
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/deleteGroup/${id}`)
+            .then(() => {
+                this.getGroup()
+                console.log("deleted")
+            }).catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    itemRefresh = () => {
+        this.setState({
+            itemRefresh: !this.state.itemRefresh
+        })
+        this.getGroup()
+
+    }
     render() {
 
         // console.log("FROM HOME============", this.state.user)
@@ -55,22 +97,30 @@ class Home extends Component {
 
                     <div className="row">
                         <div className="col-md-2">
-                            {/* <h1>{this.state.amount}</h1> <h3>left to budget</h3> */}
                         </div>
                         <div className="col-md-7">
                             <TopNav amount={this.state.amount} />
-                            {/* <h1 className="text-center">INCOME FORM</h1> */}
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
-                            <Groups user={this.props.user} />
+
+                            {this.state.groups.map((group, i) => {
+
+                                console.log('froup', group)
+                                return (<Groups deleteGroup={this.deleteGroup} group={group} i={i} itemRefresh={this.itemRefresh} user={this.props.user} />)
+                            })}
+                            <div className="card addGroup mb-3">
+                                <div className="card-body">
+                                    <span style={{ cursor: "pointer" }}
+                                        onClick={this.createGroup}>
+                                        <i className="fas fa-plus text"></i>
+                                        <strong>Add Group</strong>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <div className="col-md-3">
                         </div>
                     </div>
                 </div>
-
-
-
-
             </Fragment>
         );
     }
