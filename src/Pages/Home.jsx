@@ -4,7 +4,7 @@ import Income from './Income/Income'
 import TopNav from './TopNav/TopNav'
 import Groups from './Groups/Groups'
 import fire from 'firebase'
-
+import axios from 'axios'
 class Home extends Component {
 
 
@@ -21,6 +21,26 @@ class Home extends Component {
     retrieveAmount = (amount) => {
         console.log('retrieved', amount)
         this.setState({ amount })
+    }
+    componentDidMount() {
+
+        this.getGroup()
+        // this.totalItemAmount()
+    }
+
+    getGroup = () => {
+        let userId = this.state.user
+
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/Group/${userId}`)
+            .then(groups => {
+                console.log(groups)
+                this.setState({
+                    groups: groups.data.response
+                })
+                // this.totalItemAmount()
+            }).catch(err => {
+                console.log(err)
+            })
     }
 
     render() {
