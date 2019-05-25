@@ -12,7 +12,7 @@ class TopNav extends Component {
               <h3><strong>May</strong> <label id="year">2019</label>  <i style={{ color: "orange", fontSize: "15px", marginTop: "0" }} className="fas fa-chevron-down"></i></h3>
             </div>
             <div>
-              <span id="leftBudget"><strong className="amount">$ {this.props.amount}</strong> left to budget</span>
+              <span id="leftBudget"><strong className="amount">$ {Number(this.props.amount).toFixed(2)}</strong> left to budget</span>
             </div>
           </div>
           <div className="col">

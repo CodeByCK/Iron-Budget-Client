@@ -5,7 +5,7 @@ class Items extends Component {
 
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <Fragment>
         <div className="row editActive">
@@ -40,7 +40,7 @@ class Items extends Component {
 
           <div className="col text-right">
             0
-                        </div>
+          </div>
         </div>
         <hr></hr>
       </Fragment>

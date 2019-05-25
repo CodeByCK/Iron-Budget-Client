@@ -26,6 +26,7 @@ class Income extends Component {
 
   }
 
+
   //!================== {{ Form Handler }} =============================
 
 
@@ -44,7 +45,7 @@ class Income extends Component {
     let newIncome = {
       userId: this.state.user,
       name: this.state.name,
-      planned: Number(this.state.planned).toFixed(2),
+      planned: Number.parseFloat(this.state.planned),
       received: Number(this.state.received)
     }
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/newPaycheck`, newIncome)
@@ -219,11 +220,11 @@ class Income extends Component {
                           id={paychecks._id}
                           name="planned" >
 
-                          {paychecks.planned}
+                          {Number(paychecks.planned).toFixed(2)}
 
                         </div>
                         <div className="col text-right">
-                          {paychecks.received}
+                          {Number(paychecks.received).toFixed(2)}
                         </div>
                       </div>
                       <hr></hr>
@@ -254,8 +255,8 @@ class Income extends Component {
 
                       <input className="text-right"
                         type="number" name="planned"
+                        step="any"
                         min="0"
-                        max="100000"
                         placeholder="0.00"
                         value={this.state.planned}
                         onChange={this.eventHandler}
@@ -283,7 +284,7 @@ class Income extends Component {
                       <strong> Income</strong></p>
                   </div>
                   <div className="col col-sm-4 text-right" >
-                    <strong> $ {this.state.amount}</strong>
+                    <strong> $ {Number(this.state.amount).toFixed(2)}</strong>
                   </div>
                   <div className="col col-sm-4 text-right">
                     <strong>$ 0.00</strong>

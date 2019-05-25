@@ -28,16 +28,6 @@ class Groups extends Component {
 
   }
 
-  // getItems = (e) => {
-  //   let groupId = e.target.getAttribute("id")
-
-  //   axios.get(`${process.env.REACT_APP_BASE_URL}/api/GroupItems/${groupId}`)
-  //     .then(items => {
-  //       this.setState({
-  //         items: items.data.response
-  //       })
-  //     })
-  // }
 
   editGroup = (e) => {
     // console.log("name", e.target.getAttribute("name"))
@@ -122,7 +112,6 @@ class Groups extends Component {
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/deleteItem/${id}`)
       .then(items => {
 
-        //! SOMETHING GOES HERE TO SET THE STATE TO THE CURRENT ITEMS
         let itemCopy = [...this.state.items]
         itemCopy.forEach((item, i) => {
           if (item._id === id) {
@@ -165,9 +154,6 @@ class Groups extends Component {
 
     return (
       <Fragment>
-        {/* {this.totalItemAmount()} */}
-        {/* {this.state.itemAmount} */}
-        {/* {this.state.groups.map((group, i) => { */}
         <div key={this.props.i} className="card incomeCard mb-3">
           <div className="card-body">
             <div className="row">
@@ -181,7 +167,7 @@ class Groups extends Component {
                   </i>
                   <strong>
 
-                    <div style={{ width: "100%", display: "inline-block" }}
+                    <div style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
                       data-toggle="collapse"
                       data-target={`#groupCollapse${this.props.i}`}
                       onClick={this.collapse}
