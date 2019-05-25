@@ -46,7 +46,7 @@ class Income extends Component {
       userId: this.state.user,
       name: this.state.name,
       planned: Number.parseFloat(this.state.planned),
-      received: Number(this.state.received)
+      received: Number.parseFloat(this.state.received)
     }
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/newPaycheck`, newIncome)
       .then(response => {

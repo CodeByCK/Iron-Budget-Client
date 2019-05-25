@@ -21,7 +21,7 @@ class Items extends Component {
             className="col-4"
             contentEditable="true"
             data="name"
-            onBlur={this.props.delete}
+            onBlur={this.props.edit}
             id={this.props._id}
             name="name">
             {this.props.name}
@@ -30,11 +30,11 @@ class Items extends Component {
           <div
             className="col text-right dollar"
             contentEditable="true"
-            onBlur={this.props.delete}
+            onBlur={this.props.edit}
             id={this.props._id}
             name="planned">
 
-            {this.props.planned}
+            {Number(this.props.planned).toFixed(2)}
 
           </div>
 

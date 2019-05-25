@@ -57,7 +57,7 @@ class Groups extends Component {
     e.preventDefault()
     let groupId = e.target.getAttribute('id')
     let name = this.state.itemName
-    let planned = this.state.itemPlanned
+    let planned = Number.parseFloat(this.state.itemPlanned)
 
     console.log(groupId, name, planned)
 
@@ -205,7 +205,7 @@ class Groups extends Component {
 
                 {this.state.items.map((item, i) => {
                   return (
-                    <Items {...item} delete={this.deleteItem} />
+                    <Items {...item} edit={this.editItem} delete={this.deleteItem} />
                   )
                 })}
 
@@ -237,7 +237,7 @@ class Groups extends Component {
                         type="number"
                         name="itemPlanned"
                         min="0"
-                        max="100000"
+                        step="any"
                         placeholder="0.00"
                         value={this.state.planned}
                         onChange={this.eventHandler}
