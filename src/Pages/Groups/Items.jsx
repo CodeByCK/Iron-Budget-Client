@@ -2,10 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 class Items extends Component {
 
-
-
   render() {
-    // console.log(this.props)
     return (
       <Fragment>
         <div className="row editActive">
@@ -37,7 +34,6 @@ class Items extends Component {
             {Number(this.props.planned).toFixed(2)}
 
           </div>
-
           <div className="col text-right">
             0
           </div>

@@ -10,26 +10,47 @@ class Home extends Component {
 
     state = {
         amount: null,
+        budget: null,
         groups: [],
-        itemRefresh: false
+        itemRefresh: false,
+        groupAmount: null,
 
     }
 
 
-    //Logout 
-    logout = () => {
-        fire.auth().signOut()
+    componentDidMount() {
+        this.getGroup()
+
     }
+
 
     retrieveAmount = (amount) => {
         console.log('retrieved', amount)
         this.setState({ amount })
     }
 
-    componentDidMount() {
-        this.getGroup()
-        // this.totalItemAmount()
+
+    //? ==================================================================================================
+    //! =====----=-=-=-=-=-=-=-----===== ONLY WORKS WHEN PAGE REFRESHES. =====----=-=-=-=-=-=-=-----=====
+    //? ==================================================================================================
+
+    calculateTotal = () => {
+        let amount = 0
+        this.state.groups.map((groups, i) => {
+            groups.items.map((item, i) => {
+                amount += Number(item.planned)
+            })
+            this.setState({
+                groupAmount: amount
+            }, () => this.setState({
+                budget: this.state.amount - this.state.groupAmount
+            }))
+        })
     }
+    //? ==================================================================================================
+    //! =====----=-=-=-=-=-=-=-----==========----=-=-=-=-=-=-=-----==========----=-=-=-=-=-=-=-----=======
+    //? ==================================================================================================
+
 
 
     getGroup = () => {
@@ -38,15 +59,18 @@ class Home extends Component {
         axios.get(`${process.env.REACT_APP_BASE_URL}/api/Group/${userId}`)
             .then(groups => {
                 console.log(groups)
+                // this.setState({
+                //     groups: groups.data.response
+                // })
                 this.setState({
                     groups: groups.data.response
-                })
-                // this.totalItemAmount()
-
+                }, () => this.calculateTotal())
+                this.calculateTotal()
             }).catch(err => {
                 console.log(err)
             })
     }
+
 
     createGroup = () => {
         let user = this.props.user
@@ -77,20 +101,19 @@ class Home extends Component {
             })
     }
 
-
-    itemRefresh = () => {
-        this.setState({
-            itemRefresh: !this.state.itemRefresh
-        })
-        this.getGroup()
-
+    //Logout 
+    logout = () => {
+        fire.auth().signOut()
     }
+
+
     render() {
 
         // console.log("FROM HOME============", this.state.user)
         return (
 
             <Fragment>
+
                 <SideNav logout={this.logout} />
 
                 <div className="container-fluid">
@@ -99,14 +122,19 @@ class Home extends Component {
                         <div className="col-md-2">
                         </div>
                         <div className="col-md-7">
-                            <TopNav amount={this.state.amount} />
+                            <TopNav amount={this.state.amount} groups={this.state.groups} />
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
 
                             {this.state.groups.map((group, i) => {
 
                                 console.log('froup', group)
-                                return (<Groups deleteGroup={this.deleteGroup} group={group} i={i} itemRefresh={this.itemRefresh} user={this.props.user} />)
+                                return (<Groups calculateTotal={this.calculateTotal} groupAmount={this.retrieveGroupAmount}
+                                    deleteGroup={this.deleteGroup}
+                                    group={group}
+                                    i={i}
+                                    user={this.props.user} />)
                             })}
+
                             <div className="card addGroup mb-3">
                                 <div className="card-body">
                                     <span style={{ cursor: "pointer" }}
@@ -121,6 +149,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="text-center"><h1>{this.state.budget} left to budget</h1></div>
             </Fragment>
         );
     }

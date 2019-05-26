@@ -16,7 +16,7 @@ class SideNav extends Component {
 
     return (
       <Fragment>
-        <i className="fas fa-bars" onMouseOver={this.toggleMenu} style={{ fontSize: "2rem", cursor: "pointer" }}></i>
+        <i className="fas fa-chevron-right ml-3 mt-3" onMouseOver={this.toggleMenu} style={{ fontSize: "1rem", cursor: "pointer" }}></i>
         <div className={`sidebar-menu${this.state.isMenuOpen === true ? ' open' : ''}`}>
           <button type="button" className="button small float-right text-white" onClick={this.toggleMenu}>X</button>
 

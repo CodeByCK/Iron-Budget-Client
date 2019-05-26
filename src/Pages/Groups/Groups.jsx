@@ -13,11 +13,6 @@ class Groups extends Component {
     itemPlanned: '',
     groupId: '',
     form: false,
-    itemAmount: 0
-  }
-
-  componentDidMount() {
-
   }
 
   collapse = () => {
@@ -30,10 +25,6 @@ class Groups extends Component {
 
 
   editGroup = (e) => {
-    // console.log("name", e.target.getAttribute("name"))
-    // console.log("Inniter HTML-->", e.target.innerHTML)
-    // console.log("id-------------->", e.target.getAttribute("id"))
-
     let groupId = e.target.getAttribute("id")
     let name = e.target.getAttribute("name")
     let val = e.target.innerHTML.toUpperCase()
@@ -52,7 +43,6 @@ class Groups extends Component {
 
 
   createItem = (e) => {
-
     console.log('in create!')
     e.preventDefault()
     let groupId = e.target.getAttribute('id')
@@ -71,7 +61,6 @@ class Groups extends Component {
       this.setState({
         items: [...this.state.items, { groupId: groupId, name: name, planned: planned }]
       })
-
     }).catch(err => {
       console.log(err)
     })
@@ -83,10 +72,6 @@ class Groups extends Component {
 
 
   editItem = (e) => {
-    // console.log("name", e.target.getAttribute("name"))
-    // console.log("Inniter HTML-->", e.target.innerHTML)
-    // console.log("id-------------->", e.target.getAttribute("id"))
-
     let itemId = e.target.getAttribute("id")
     let name = e.target.getAttribute("name")
     let val = e.target.innerHTML
@@ -135,11 +120,10 @@ class Groups extends Component {
   showForm = (e) => {
     console.log('in show form')
     this.setState({
-      // groupId: e.target.getAttribute("id"),
       form: !this.state.form
     })
-
   }
+
 
   eventHandler = (e) => {
     this.setState({
@@ -149,9 +133,6 @@ class Groups extends Component {
 
 
   render() {
-
-    console.log('$$$$$$$$$', this)
-
     return (
       <Fragment>
         <div key={this.props.i} className="card incomeCard mb-3">
@@ -269,9 +250,6 @@ class Groups extends Component {
             </div>
           </div>
         </div>
-
-
-        {/* //})} */}
 
       </Fragment>
     );
