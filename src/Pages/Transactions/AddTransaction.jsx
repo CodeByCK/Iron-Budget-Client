@@ -11,7 +11,8 @@ class AddTransaction extends Component {
     date: null,
     items: [],
     name: '',
-    itemId: ''
+    itemId: '',
+    user: this.props.user
 
   }
 
@@ -29,9 +30,10 @@ class AddTransaction extends Component {
     let name = this.state.name
     let itemId = this.state.itemId
     let amount = Number.parseFloat(this.state.amount)
+    let userId = this.props.user
 
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/createTransaction/`, {
-      date, name, itemId, amount
+      date, name, itemId, amount, userId
     }).then(response => {
       this.setState({
         amount: 0,

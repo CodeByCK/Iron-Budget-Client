@@ -18,6 +18,7 @@ class TopNav extends Component {
     return (
       <Fragment>
         <Transactions
+          user={this.props.user}
           groups={this.props.groups}
           show={this.state.modalShow}
           onHide={this.modalClose}

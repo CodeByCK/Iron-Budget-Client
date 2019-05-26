@@ -23,8 +23,8 @@ class Transactions extends Component {
           </Modal.Header>
           <Modal.Body>
             <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
-              <Tab label="Add"><AddTransaction groups={this.props.groups} /></Tab>
-              <Tab label="Search"><SearchTransaction /></Tab>
+              <Tab label="Add"><AddTransaction user={this.props.user} groups={this.props.groups} /></Tab>
+              <Tab label="Search"><SearchTransaction user={this.props.user} /></Tab>
               <Tab label="Bank Account"><BankTransaction /></Tab>
             </Tabs>
           </Modal.Body>

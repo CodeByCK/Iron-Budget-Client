@@ -122,7 +122,7 @@ class Home extends Component {
                         <div className="col-md-2">
                         </div>
                         <div className="col-md-7">
-                            <TopNav amount={this.state.amount} groups={this.state.groups} />
+                            <TopNav user={this.props.user} amount={this.state.amount} groups={this.state.groups} />
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
 
                             {this.state.groups.map((group, i) => {
