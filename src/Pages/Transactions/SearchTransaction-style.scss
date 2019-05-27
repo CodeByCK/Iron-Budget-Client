@@ -1,0 +1,66 @@
+// span {
+//   color:#495257;
+//   font-weight: 300
+// }
+.tCard{
+  padding: 5px;
+  border-radius: 2em;
+  margin: 0 auto;
+}
+
+.month{
+  font-weight: 800;
+  font-size: large;
+  color: orange;
+  margin-left: 5px;
+}
+
+.day{
+margin-left: 13px;
+font-weight: 500;
+}
+
+.tAmount{
+  font-weight: 400;
+  font-size: 1em;
+  color: #333a3d;
+}
+
+@media (min-width: 450px) { 
+  .tCard{
+    width: 300px;
+    padding: 5px;
+    border-radius: 2em;
+    height: 4em
+    // margin: 0 auto;
+  }
+ }
+
+ @media (min-width: 250px) { 
+  .tCard{
+    width: 95%;
+    max-width: 350px;
+    padding: 5px;
+    border-radius: 2em;
+    // margin: 0 auto;
+  }
+ }
+
+ .listItems{
+  max-height: 50vh;
+  overflow: auto
+}
+
+.trashContainer{
+  display: inline-flex;
+  width: 20px;
+  margin: 0
+  
+}
+
+.tTitle{
+  font-weight: 300;
+  font-size:1.5em;
+  // display: flex;
+  margin-left: -10px;
+}

@@ -29,7 +29,7 @@ class AddTransaction extends Component {
     let date = this.state.date
     let name = this.state.name
     let itemId = this.state.itemId
-    let amount = Number.parseFloat(this.state.amount)
+    let amount = Number.parseFloat(-this.state.amount)
     let userId = this.props.user
 
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/createTransaction/`, {
@@ -55,28 +55,49 @@ class AddTransaction extends Component {
       <Fragment>
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
-            <input type="Number" min="0"
+            <input
+              type="Number"
+              min="0"
+              autoComplete="off"
               step="any"
               value={this.state.amount}
               onChange={this.eventHandler}
-              className="form-control text-center" name="amount" placeholder="$ 0.00" required />
+              className="form-control text-center"
+              name="amount"
+              placeholder="$ 0.00"
+              required />
           </div>
 
           <div className="form-row">
             <div className="col">
-              <input type="date" value={this.state.date} onChange={this.eventHandler} className="form-control input-group date" name="date" placeholder="Date" />
+              <input
+                type="date"
+                value={this.state.date}
+                onChange={this.eventHandler}
+                className="form-control input-group date"
+                name="date"
+                placeholder="Date"
+                required />
             </div>
 
 
 
             <div className="col">
-              <input type="text" value={this.state.name} onChange={this.eventHandler} className="form-control" name="name" placeholder="Name " />
+              <input
+                type="text"
+                value={this.state.name}
+                onChange={this.eventHandler}
+                className="form-control"
+                name="name"
+                autoComplete="off"
+                placeholder="Name "
+                required />
             </div>
           </div>
 
           <div className="form-row mt-3">
-            <select name="itemId" value={this.state.itemId} onChange={this.eventHandler} className="form-control">
-              <option selected>Choose Budget Item</option>
+            <select name="itemId" value={this.state.itemId} onChange={this.eventHandler} className="form-control" required>
+              <option required selected>(Choose Budget Item)</option>
               {this.props.groups.map((groups, i) => {
                 return groups.items.map((item, i) => {
                   console.log("============>", item)

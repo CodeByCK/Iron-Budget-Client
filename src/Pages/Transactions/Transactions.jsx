@@ -13,6 +13,7 @@ class Transactions extends Component {
       <Fragment>
         <Modal
           {...this.props}
+
           size="lg"
           aria-labelledby="contained-modal-title"
         >
@@ -21,10 +22,10 @@ class Transactions extends Component {
               Transactions
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body >
             <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
               <Tab label="Add"><AddTransaction user={this.props.user} groups={this.props.groups} /></Tab>
-              <Tab label="Search"><SearchTransaction user={this.props.user} /></Tab>
+              <Tab className="listItems" label="Search"><SearchTransaction user={this.props.user} /></Tab>
               <Tab label="Bank Account"><BankTransaction /></Tab>
             </Tabs>
           </Modal.Body>
