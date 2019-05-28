@@ -4,7 +4,7 @@ class BankTransaction extends Component {
   render() {
     return (
       <Fragment>
-        Bank Transactions
+        <h1>Bank Transaction Here</h1>
       </Fragment>
     );
   }

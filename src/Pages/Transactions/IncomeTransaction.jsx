@@ -1,19 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios'
-// import { Modal, Button } from 'react-bootstrap'
-// import DatePicker from 'react-datepicker'
-// import "react-datepicker/dist/react-datepicker.css";
 
-class AddTransaction extends Component {
+class IncomeTransaction extends Component {
 
   state = {
+    incomes: [],
     amount: null,
     date: null,
-    items: [],
     name: '',
-    itemId: '',
+    incomeId: '',
     user: this.props.user
+  }
 
+  componentDidMount() {
+    this.getIncome()
   }
 
 
@@ -24,38 +24,45 @@ class AddTransaction extends Component {
   }
 
 
+
   createTransaction = (e) => {
     e.preventDefault()
     let date = this.state.date
     let name = this.state.name
-    let itemId = this.state.itemId
-    let amount = Number.parseFloat(-this.state.amount)
+    let incomeId = this.state.incomeId
+    let amount = Number.parseFloat(this.state.amount)
     let userId = this.props.user
 
-    axios.post(`${process.env.REACT_APP_BASE_URL}/api/createTransaction/`, {
-      date, name, itemId, amount, userId
+    axios.post(`${process.env.REACT_APP_BASE_URL}/api/createIncomeTransaction/`, {
+      date, name, incomeId, amount, userId
     }).then(response => {
       this.setState({
         amount: 0,
         date: null,
         name: '',
-        itemId: ''
+        incomeId: ''
       })
-      console.log(response)
+      // console.log(response)
     }).catch(err => {
-      console.log(err)
+      // console.log(err)
     })
   }
 
 
-  render() {
-    // this.getItems()
 
+  getIncome = () => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api/paychecks/${this.state.user}`)
+      .then(paychecks => {
+        this.setState({
+          incomes: paychecks.data.response
+        })
+      })
+  }
+
+
+  render() {
     return (
       <Fragment>
-        {/* <div className="row text-center">
-          <h3 className="text-center">Expense</h3>
-        </div> */}
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
             <input
@@ -99,15 +106,15 @@ class AddTransaction extends Component {
           </div>
 
           <div className="form-row mt-3">
-            <select name="itemId" value={this.state.itemId} onChange={this.eventHandler} className="form-control" required>
-              <option required selected>(Choose Budget Item)</option>
-              {this.props.groups.map((groups, i) => {
-                return groups.items.map((item, i) => {
-                  console.log("============>", item)
-                  return (
-                    <option value={item._id} key={i}>{item.name}</option>
-                  )
-                })
+            <select name="incomeId" value={this.state.incomeId} onChange={this.eventHandler} className="form-control" required>
+              <option required selected>(Choose Income Item)</option>
+              {this.state.incomes.map((income, i) => {
+                // return groups.items.map((item, i) => {
+                // console.log("============>", item)
+                return (
+                  <option value={income._id} key={i}>{income.name}</option>
+                )
+
               })}
             </select>
 
@@ -117,10 +124,9 @@ class AddTransaction extends Component {
           </div>
 
         </form>
-
       </Fragment>
     );
   }
 }
 
-export default AddTransaction;
+export default IncomeTransaction;

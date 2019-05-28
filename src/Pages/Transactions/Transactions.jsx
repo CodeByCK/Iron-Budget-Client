@@ -4,6 +4,7 @@ import { Tabs, Tab } from 'react-bootstrap-tabs';
 import SearchTransaction from './SearchTransaction'
 import BankTransaction from './BankTransaction'
 import AddTransaction from './AddTransaction'
+import IncomeTransaction from './IncomeTransaction'
 
 
 
@@ -25,8 +26,9 @@ class Transactions extends Component {
           <Modal.Body >
             <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
               <Tab label="Add"><AddTransaction user={this.props.user} groups={this.props.groups} /></Tab>
+              <Tab label="Income"><IncomeTransaction user={this.props.user} groups={this.props.groups} /></Tab>
               <Tab className="listItems" label="Search"><SearchTransaction user={this.props.user} /></Tab>
-              <Tab label="Bank Account"><BankTransaction /></Tab>
+              <Tab label="Your Bank"><BankTransaction /></Tab>
             </Tabs>
           </Modal.Body>
           <Modal.Footer>

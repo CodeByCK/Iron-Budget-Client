@@ -5,7 +5,7 @@ class Income extends Component {
   state = {
     name: 'Paycheck',
     planned: 0,
-    received: '',
+    received: [],
     user: this.props.user,
     incomes: [],
     collapsed: false,
@@ -15,7 +15,9 @@ class Income extends Component {
     form: false,
     editActive: false,
     trash: true,
-    amount: 0
+    amount: 0,
+    id: '',
+    recievedTotal: 0.00
 
 
   }
@@ -23,8 +25,9 @@ class Income extends Component {
   componentDidMount() {
 
     this.updateIncomeAmount()
-
   }
+
+
 
 
   //!================== {{ Form Handler }} =============================
@@ -135,9 +138,10 @@ class Income extends Component {
         })
         {/* //! totalAmount() will update the state with the correct amount
         //! onClick prop is to lift the amount state up to HOME */}
-
+        // this.getSpentAmount()
         this.totalAmount()
         this.props.onClick(this.state.amount)
+
       })
   }
 
@@ -154,6 +158,38 @@ class Income extends Component {
     console.log('amoutnnnt', amount)
     this.setState({ amount })
   }
+
+
+
+
+  // getSpentAmount = (id) => {
+  //   // let id = this.state.id
+  //   axios.get(`${process.env.REACT_APP_BASE_URL}/api/getTransaction/income/${id}`)
+  //     .then(response => {
+  //       this.setState({
+  //         received: response.data
+  //       }, () => this.totalReceived())
+  //       console.log(this.state.received)
+  //     }).catch(err => {
+  //       console.log(err)
+  //     })
+  // }
+
+
+
+
+  // totalReceived = () => {
+  //   let amount = 0;
+  //   this.state.received.map((items) => {
+  //     amount += Number(items.amount)
+  //   })
+  //   // console.log('amoutnnnt', amount)
+  //   this.setState({
+  //     receivedTotal: amount
+  //   })
+  // }
+
+
 
 
 
@@ -223,7 +259,8 @@ class Income extends Component {
                           {Number(paychecks.planned).toFixed(2)}
 
                         </div>
-                        <div className="col text-right">
+                        <div className="col text-right"
+                          id={paychecks._id}>
                           {Number(paychecks.received).toFixed(2)}
                         </div>
                       </div>

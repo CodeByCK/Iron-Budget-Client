@@ -10,7 +10,7 @@ class Items extends Component {
   }
 
 
-  componentDidMount() {
+  componentWillReceiveProps() {
     this.getSpentAmount()
   }
 
@@ -34,8 +34,10 @@ class Items extends Component {
     this.state.transactions.map((items) => {
       amount += Number(items.amount)
     })
-    console.log('amoutnnnt', amount)
-    this.setState({ spent: amount })
+    // console.log('amoutnnnt', amount)
+    this.setState({
+      spent: amount
+    })
   }
 
 
