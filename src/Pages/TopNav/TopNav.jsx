@@ -22,6 +22,7 @@ class TopNav extends Component {
           groups={this.props.groups}
           show={this.state.modalShow}
           onHide={this.modalClose}
+          reload={this.props.reload}
         />
         <div className="topNav ">
 

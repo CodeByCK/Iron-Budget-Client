@@ -36,21 +36,21 @@ class Groups extends Component {
       val
     })
       .then(response => {
-        console.log(response)
+        // console.log(response)
       }).catch(err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 
 
   createItem = (e) => {
-    console.log('in create!')
+    // console.log('in create!')
     e.preventDefault()
     let groupId = e.target.getAttribute('id')
     let name = this.state.itemName
     let planned = Number.parseFloat(this.state.itemPlanned)
 
-    console.log(groupId, name, planned)
+    // console.log(groupId, name, planned)
 
     axios.post(`${process.env.REACT_APP_BASE_URL}/api/createItem/`, {
       groupId,
@@ -63,7 +63,7 @@ class Groups extends Component {
         items: [...this.state.items, { groupId: groupId, name: name, planned: planned }]
       })
     }).catch(err => {
-      console.log(err)
+      // console.log(err)
     })
     this.showForm()
     //this.props.itemRefresh();
@@ -82,9 +82,9 @@ class Groups extends Component {
       val
     })
       .then(response => {
-        console.log(response)
+        // console.log(response)
       }).catch(err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 
@@ -107,19 +107,20 @@ class Groups extends Component {
         this.setState({
           items: itemCopy
         })
+        this.props.calculateTotal()
 
-        console.log(items)
+        // console.log(items)
 
       }).catch(err => {
-        console.log(err)
+        // console.log(err)
       })
-    this.forceUpdate()
+    // this.forceUpdate()
   }
 
 
 
   showForm = (e) => {
-    console.log('in show form')
+    // console.log('in show form')
     this.setState({
       form: !this.state.form
     })
@@ -210,7 +211,7 @@ class Groups extends Component {
                         type="text"
                         name="itemName"
                         placeholder="ex. Gas"
-                        value={this.state.itemName}
+                        defaultValue={this.state.itemName}
                         onChange={this.eventHandler}
                         autoComplete="off" />
 
@@ -225,7 +226,7 @@ class Groups extends Component {
                         min="0"
                         step="any"
                         placeholder="0.00"
-                        value={this.state.planned}
+                        defaultValue={this.state.planned}
                         onChange={this.eventHandler}
                         autoComplete="off" />
 

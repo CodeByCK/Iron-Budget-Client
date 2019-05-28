@@ -35,17 +35,22 @@ class Home extends Component {
     //? ==================================================================================================
 
     calculateTotal = () => {
-        let amount = 0
+        let total = 0
+        console.log('calulateTotal')
         this.state.groups.map((groups, i) => {
             groups.items.map((item, i) => {
-                amount += Number(item.planned)
+                total += Number(item.planned)
             })
-            this.setState({
-                groupAmount: amount
-            }, () => this.setState({
-                budget: this.state.amount - this.state.groupAmount
-            }))
         })
+
+        this.setState({
+            groupAmount: total
+        }, () => this.setState({
+            budget: this.state.amount - this.state.groupAmount
+            // budget: Date.now() this works so my job is done here... but u
+        }))
+        //do your calc up there and then 
+        //setState down here after the loops 
     }
     //? ==================================================================================================
     //! =====----=-=-=-=-=-=-=-----==========----=-=-=-=-=-=-=-----==========----=-=-=-=-=-=-=-----=======
@@ -58,7 +63,7 @@ class Home extends Component {
 
         axios.get(`${process.env.REACT_APP_BASE_URL}/api/Group/${userId}`)
             .then(groups => {
-                console.log(groups)
+                console.log(groups, "dsadasdasdasdsa-das=d-asd=-asd=-asd=as-das=d-asd=-asdas=-dasd=-asd=as-dasd=-")
                 // this.setState({
                 //     groups: groups.data.response
                 // })
@@ -79,7 +84,7 @@ class Home extends Component {
         }).then(response => {
             this.setState({
                 groups: [...this.state.groups, response.data]
-            })
+            }, () => this.calculateTotal())
         }).catch(err => {
             console.log(err)
         })
@@ -96,10 +101,14 @@ class Home extends Component {
             .then(() => {
                 this.getGroup()
                 console.log("deleted")
+
             }).catch(err => {
                 console.log(err)
             })
     }
+
+
+
 
     //Logout 
     logout = () => {
@@ -122,12 +131,12 @@ class Home extends Component {
                         <div className="col-md-2">
                         </div>
                         <div className="col-md-7">
-                            <TopNav user={this.props.user} amount={this.state.amount} groups={this.state.groups} />
+                            <TopNav user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
 
                             {this.state.groups.map((group, i) => {
 
-                                console.log('froup', group)
+                                // console.log('froup', group)
                                 return (<Groups calculateTotal={this.calculateTotal} groupAmount={this.retrieveGroupAmount}
                                     deleteGroup={this.deleteGroup}
                                     group={group}

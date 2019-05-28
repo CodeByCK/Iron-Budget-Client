@@ -13,7 +13,6 @@ class SearchTransaction extends Component {
 
   componentDidMount() {
     this.getTransactions()
-    // this.filterTransactions()
   }
 
 
@@ -31,6 +30,8 @@ class SearchTransaction extends Component {
       })
   }
 
+
+
   deleteTransaction = (e) => {
     e.preventDefault()
     let id = e.target.getAttribute('id')
@@ -42,14 +43,6 @@ class SearchTransaction extends Component {
       })
   }
 
-  // filterTransactions = (e) => {
-  //   let filter = this.state.transactions.filter((transaction) => {
-  //     return transaction.name.toLowerCase().includes(e.target.value.toLowerCase())
-  //   })
-  //   this.setState({
-  //     filter
-  //   })
-  // }
 
 
   render() {
@@ -87,30 +80,6 @@ class SearchTransaction extends Component {
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-            // <div className="card mt-2 tCard">
-            //   <div className="row" >
-            //     <div className="col-3">
-            //       <span className="month text-right"><Moment format="MMM" withTitle>{item.date}</Moment></span>
-            //       <br></br>
-            //       <span className="day text-right"><Moment format="DD" withTitle>{item.date}</Moment></span>
-            //     </div>
-            //     <div className="col-5 text-center">
-            //       <div className="card-block">
-            //         <h4 className="card-title">{item.name}</h4>
-            //         <p></p>
-            //       </div>
-            //     </div>
-            //     <div className="col mt-2 ">
-            //       <span className="tAmount float-right">$ {Number(item.amount).toFixed(2)}</span>
-            //     </div>
-            //   </div>
-            // </div>
           )
         })}
       </Fragment>

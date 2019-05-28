@@ -31,13 +31,16 @@ class Items extends Component {
 
   totalAmount = () => {
     let amount = 0;
-    this.state.transactions.map((items) => {
-      amount += Number(items.amount)
-    })
-    // console.log('amoutnnnt', amount)
-    this.setState({
-      spent: amount
-    })
+    if (this.state.transactions.length > 0) {
+      this.state.transactions.map((items) => {
+        amount += Number(items.amount)
+      })
+      // console.log('amoutnnnt', amount)
+      this.setState({
+        spent: amount
+      })
+    }
+
   }
 
 

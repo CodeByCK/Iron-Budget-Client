@@ -25,9 +25,9 @@ class Transactions extends Component {
           </Modal.Header>
           <Modal.Body >
             <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
-              <Tab label="Add"><AddTransaction user={this.props.user} groups={this.props.groups} /></Tab>
+              <Tab label="Add"><AddTransaction reload={this.props.reload} user={this.props.user} groups={this.props.groups} /></Tab>
               <Tab label="Income"><IncomeTransaction user={this.props.user} groups={this.props.groups} /></Tab>
-              <Tab className="listItems" label="Search"><SearchTransaction user={this.props.user} /></Tab>
+              <Tab className="listItems" label="Search"><SearchTransaction reload={this.props.reload} user={this.props.user} /></Tab>
               <Tab label="Your Bank"><BankTransaction /></Tab>
             </Tabs>
           </Modal.Body>

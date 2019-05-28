@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios'
-// import { Modal, Button } from 'react-bootstrap'
-// import DatePicker from 'react-datepicker'
-// import "react-datepicker/dist/react-datepicker.css";
+
 
 class AddTransaction extends Component {
 
@@ -40,22 +38,19 @@ class AddTransaction extends Component {
         date: null,
         name: '',
         itemId: ''
-      })
+      }, () => this.props.reload())
+
       console.log(response)
     }).catch(err => {
       console.log(err)
     })
+
   }
 
 
   render() {
-    // this.getItems()
-
     return (
       <Fragment>
-        {/* <div className="row text-center">
-          <h3 className="text-center">Expense</h3>
-        </div> */}
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
             <input
@@ -110,14 +105,11 @@ class AddTransaction extends Component {
                 })
               })}
             </select>
-
           </div>
           <div className="text-center">
             <button onChange={this.eventHandler} type="submit" className="btn btn-danger btn-sm mt-2">SUBMIT</button>
           </div>
-
         </form>
-
       </Fragment>
     );
   }

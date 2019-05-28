@@ -18,14 +18,12 @@ class Income extends Component {
     amount: 0,
     id: '',
     receivedTotal: 0.00
-
-
   }
 
-  componentDidMount() {
 
+
+  componentDidMount() {
     this.updateIncomeAmount()
-    // this.totalReceived()
   }
 
 
@@ -77,10 +75,6 @@ class Income extends Component {
 
   //!========================== {{Edit Income}}  ==================================
   editIncome = (e) => {
-    // console.log("this is the attribute------->", e.target.getAttribute("name"))
-    // console.log('this is the id of the row===>', e.target.getAttribute("id"))
-    // let planned = e.target.getAttribute("name")
-
     let name = e.target.getAttribute("name")
     let id = e.target.getAttribute("id")
     let val = e.target.innerHTML;
@@ -143,8 +137,6 @@ class Income extends Component {
         this.totalAmount()
         this.props.onClick(this.state.amount)
         // this.totalReceived()
-
-
       })
   }
 
@@ -172,15 +164,11 @@ class Income extends Component {
         income.received.map(received => {
           amount += received
         })
-
     })
     return amount
-    // console.log("=-=-=-=-=-= amounttttttt", amount)
-    // console.log('amoutnnnt', amount)
-    // this.setState({
-    //   receivedTotal: amount
-    // })
   }
+
+
 
   ReceivedAmount = () => {
     let amount = 0;
@@ -188,15 +176,10 @@ class Income extends Component {
       income.received.map(received => {
         amount += received
       })
-
     })
     return amount
-    // console.log("=-=-=-=-=-= amounttttttt", amount)
-    // console.log('amoutnnnt', amount)
-    // this.setState({
-    //   receivedTotal: amount
-    // })
   }
+
 
 
 
@@ -275,7 +258,7 @@ class Income extends Component {
                               "green"
                           }}>
 
-                          {this.totalReceived(paychecks._id).toFixed(2)}
+                          $ {this.totalReceived(paychecks._id).toFixed(2)}
 
                         </div>
                       </div>
