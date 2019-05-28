@@ -109,8 +109,6 @@ class IncomeTransaction extends Component {
             <select name="incomeId" value={this.state.incomeId} onChange={this.eventHandler} className="form-control" required>
               <option required selected>(Choose Income Item)</option>
               {this.state.incomes.map((income, i) => {
-                // return groups.items.map((item, i) => {
-                // console.log("============>", item)
                 return (
                   <option value={income._id} key={i}>{income.name}</option>
                 )

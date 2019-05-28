@@ -17,7 +17,7 @@ class Income extends Component {
     trash: true,
     amount: 0,
     id: '',
-    recievedTotal: 0.00
+    receivedTotal: 0.00
 
 
   }
@@ -25,6 +25,7 @@ class Income extends Component {
   componentDidMount() {
 
     this.updateIncomeAmount()
+    // this.totalReceived()
   }
 
 
@@ -135,12 +136,14 @@ class Income extends Component {
       .then(paychecks => {
         this.setState({
           incomes: paychecks.data.response
-        })
+        }, () => this.totalReceived())
         {/* //! totalAmount() will update the state with the correct amount
         //! onClick prop is to lift the amount state up to HOME */}
         // this.getSpentAmount()
         this.totalAmount()
         this.props.onClick(this.state.amount)
+        // this.totalReceived()
+
 
       })
   }
@@ -162,32 +165,38 @@ class Income extends Component {
 
 
 
-  // getSpentAmount = (id) => {
-  //   // let id = this.state.id
-  //   axios.get(`${process.env.REACT_APP_BASE_URL}/api/getTransaction/income/${id}`)
-  //     .then(response => {
-  //       this.setState({
-  //         received: response.data
-  //       }, () => this.totalReceived())
-  //       console.log(this.state.received)
-  //     }).catch(err => {
-  //       console.log(err)
-  //     })
-  // }
+  totalReceived = (id) => {
+    let amount = 0;
+    this.state.incomes.map((income) => {
+      if (income._id === id)
+        income.received.map(received => {
+          amount += received
+        })
 
+    })
+    return amount
+    // console.log("=-=-=-=-=-= amounttttttt", amount)
+    // console.log('amoutnnnt', amount)
+    // this.setState({
+    //   receivedTotal: amount
+    // })
+  }
 
+  ReceivedAmount = () => {
+    let amount = 0;
+    this.state.incomes.map((income) => {
+      income.received.map(received => {
+        amount += received
+      })
 
-
-  // totalReceived = () => {
-  //   let amount = 0;
-  //   this.state.received.map((items) => {
-  //     amount += Number(items.amount)
-  //   })
-  //   // console.log('amoutnnnt', amount)
-  //   this.setState({
-  //     receivedTotal: amount
-  //   })
-  // }
+    })
+    return amount
+    // console.log("=-=-=-=-=-= amounttttttt", amount)
+    // console.log('amoutnnnt', amount)
+    // this.setState({
+    //   receivedTotal: amount
+    // })
+  }
 
 
 
@@ -260,8 +269,14 @@ class Income extends Component {
 
                         </div>
                         <div className="col text-right"
-                          id={paychecks._id}>
-                          {Number(paychecks.received).toFixed(2)}
+                          id={paychecks._id}
+                          style={{
+                            color:
+                              "green"
+                          }}>
+
+                          {this.totalReceived(paychecks._id).toFixed(2)}
+
                         </div>
                       </div>
                       <hr></hr>
@@ -324,7 +339,7 @@ class Income extends Component {
                     <strong> $ {Number(this.state.amount).toFixed(2)}</strong>
                   </div>
                   <div className="col col-sm-4 text-right">
-                    <strong>$ 0.00</strong>
+                    <strong>$ {Number(this.ReceivedAmount()).toFixed(2)}</strong>
                   </div>
                 </div>
               </div>
