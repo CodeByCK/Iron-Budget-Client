@@ -13,6 +13,7 @@ class Groups extends Component {
     itemPlanned: '',
     groupId: '',
     form: false,
+    // spent: 0.00
   }
 
   collapse = () => {
@@ -130,6 +131,10 @@ class Groups extends Component {
       [e.target.name]: e.target.value
     })
   }
+
+
+
+
 
 
   render() {
