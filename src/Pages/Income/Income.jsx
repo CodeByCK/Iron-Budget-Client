@@ -29,6 +29,7 @@ class Income extends Component {
 
 
 
+
   //!================== {{ Form Handler }} =============================
 
 
@@ -91,6 +92,7 @@ class Income extends Component {
   }
 
   //!================== {{Delete Income Div}} =======================
+
   deleteIncome = (e) => {
     e.preventDefault()
     console.log("clicked")

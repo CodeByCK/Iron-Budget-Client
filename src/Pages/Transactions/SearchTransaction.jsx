@@ -15,6 +15,10 @@ class SearchTransaction extends Component {
     this.getTransactions()
   }
 
+  componentWillReceiveProps() {
+    this.props.reload()
+  }
+
 
   getTransactions = (e) => {
     let id = this.props.user

@@ -34,6 +34,25 @@ class Home extends Component {
     //! =====----=-=-=-=-=-=-=-----===== ONLY WORKS WHEN PAGE REFRESHES. =====----=-=-=-=-=-=-=-----=====
     //? ==================================================================================================
 
+    // calculateTotal = () => {
+    //     let total = 0
+    //     console.log('calulateTotal')
+    //     this.state.groups.map((groups, i) => {
+    //         groups.items.map((item, i) => {
+    //             total += Number(item.planned)
+    //         })
+    //     })
+
+    //     this.setState({
+    //         groupAmount: total
+    //     }, () => this.setState({
+    //         budget: this.state.amount - this.state.groupAmount
+    //         // budget: Date.now() this works so my job is done here... but u
+    //     }))
+    //     //do your calc up there and then 
+    //     //setState down here after the loops 
+    // }
+
     calculateTotal = () => {
         let total = 0
         console.log('calulateTotal')
@@ -45,10 +64,7 @@ class Home extends Component {
 
         this.setState({
             groupAmount: total
-        }, () => this.setState({
-            budget: this.state.amount - this.state.groupAmount
-            // budget: Date.now() this works so my job is done here... but u
-        }))
+        })
         //do your calc up there and then 
         //setState down here after the loops 
     }
@@ -110,6 +126,7 @@ class Home extends Component {
 
 
 
+
     //Logout 
     logout = () => {
         fire.auth().signOut()
@@ -131,7 +148,7 @@ class Home extends Component {
                         <div className="col-md-2">
                         </div>
                         <div className="col-md-7">
-                            <TopNav user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
+                            <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
 
                             {this.state.groups.map((group, i) => {
@@ -139,6 +156,7 @@ class Home extends Component {
                                 // console.log('froup', group)
                                 return (<Groups calculateTotal={this.calculateTotal} groupAmount={this.retrieveGroupAmount}
                                     deleteGroup={this.deleteGroup}
+                                    reload={this.getGroup}
                                     group={group}
                                     i={i}
                                     user={this.props.user} />)
@@ -158,7 +176,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="text-center"><h1>{this.state.budget} left to budget</h1></div>
+                {/* <div className="text-center"><h1>{this.state.budget} left to budget</h1></div> */}
             </Fragment>
         );
     }

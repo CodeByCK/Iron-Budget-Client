@@ -61,7 +61,7 @@ class Groups extends Component {
 
       this.setState({
         items: [...this.state.items, { groupId: groupId, name: name, planned: planned }]
-      })
+      }, () => { this.props.reload() })
     }).catch(err => {
       // console.log(err)
     })
@@ -82,7 +82,7 @@ class Groups extends Component {
       val
     })
       .then(response => {
-        // console.log(response)
+        this.props.reload()
       }).catch(err => {
         // console.log(err)
       })
@@ -108,6 +108,7 @@ class Groups extends Component {
           items: itemCopy
         })
         this.props.calculateTotal()
+        this.props.reload()
 
         // console.log(items)
 

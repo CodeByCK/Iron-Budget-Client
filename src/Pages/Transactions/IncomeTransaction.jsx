@@ -41,7 +41,7 @@ class IncomeTransaction extends Component {
         date: null,
         name: '',
         incomeId: ''
-      })
+      }, () => this.props.reload())
       // console.log(response)
     }).catch(err => {
       // console.log(err)
