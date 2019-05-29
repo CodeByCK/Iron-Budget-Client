@@ -152,6 +152,8 @@ class Home extends Component {
                             <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
                             <Chart groups={this.state.groups} items={this.state.groups.items} />
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
+                            {/* <div className="card mb-3 p-3">                            <Chart groups={this.state.groups} items={this.state.groups.items} />
+                            </div> */}
 
                             {this.state.groups.map((group, i) => {
 

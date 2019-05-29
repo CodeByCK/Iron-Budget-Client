@@ -14,17 +14,15 @@ class Transactions extends Component {
       <Fragment>
         <Modal
           {...this.props}
-
           size="lg"
-          aria-labelledby="contained-modal-title"
-        >
+          aria-labelledby="contained-modal-title">
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title">
               Transactions
             </Modal.Title>
           </Modal.Header>
           <Modal.Body >
-            <Tabs onSelect={(index, label) => console.log(label + ' selected')}>
+            <Tabs style={{cursor: "pointer"}} onSelect={(index, label) => console.log(label + ' selected')}>
               <Tab label="Add"><AddTransaction reload={this.props.reload} user={this.props.user} groups={this.props.groups} /></Tab>
               <Tab label="Income"><IncomeTransaction user={this.props.user} groups={this.props.groups} /></Tab>
               <Tab className="listItems" label="Search"><SearchTransaction reload={this.props.reload} user={this.props.user} /></Tab>

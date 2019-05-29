@@ -18,9 +18,20 @@ class SideNav extends Component {
       <Fragment>
         <i className="fas fa-chevron-right ml-3 mt-3" onMouseOver={this.toggleMenu} style={{ fontSize: "1rem", cursor: "pointer" }}></i>
         <div className={`sidebar-menu${this.state.isMenuOpen === true ? ' open' : ''}`}>
-          <button type="button" className="button small float-right text-white" onClick={this.toggleMenu}>X</button>
+          <button type="button" className="button small float-right text-white" onClick={this.toggleMenu}><h3>X</h3></button>
 
-          <h3 onClick={this.props.logout} style={{ cursor: "pointer", color: "blue" }}>LOG OUT</h3>
+          <div className="container">
+            <div ClassName="row">
+              <div className="footer">
+
+                <i onClick={this.props.logout} className="fas fa-sign-out-alt signout-logo"></i>
+                <br></br>
+                <div className="logout">
+                  LOG OUT
+              </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </Fragment>

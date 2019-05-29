@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import { Button, MyVerticallyCenteredModal } from 'react-bootstrap';
+// import { Button, MyVerticallyCenteredModal } from 'react-bootstrap';
 import Transactions from '../Transactions/Transactions';
+import Moment from 'react-moment'
 
 class TopNav extends Component {
 
   state = {
-    modalShow: false
+    modalShow: false,
+    date: Date.now()
   }
+
+
 
 
   modalClose = () => {
@@ -14,7 +18,6 @@ class TopNav extends Component {
   }
 
   render() {
-
     return (
       <Fragment>
         <Transactions
@@ -28,9 +31,9 @@ class TopNav extends Component {
 
           <div className="col topNav">
             <div>
-              <span><strong className="h3 font-weight-bold">May</strong>
-                <label className="h3" id="year">2019</label>  <i style={{ color: "orange", fontSize: "15px", marginTop: "0" }} className="fas fa-chevron-down"></i>
-                <i onClick={this.modalClose} className="fas fa-plus-circle float-right mr-4" style={{ color: "orange", fontSize: "40px" }}></i>
+              <span><strong className="h3 font-weight-bold"><Moment format="MMM" withTitle>{this.state.date}</Moment></strong>
+                <label className="h3" id="year"><Moment format="YYYY" withTitle>{this.state.date}</Moment></label>
+                <i onClick={this.modalClose} className="fas fa-plus-circle float-right mr-4" style={{ color: "orange", fontSize: "40px", cursor: "pointer" }}></i>
               </span>
             </div>
             <div>

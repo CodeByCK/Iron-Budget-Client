@@ -20,7 +20,7 @@ class Login extends Component {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((u) => {
                 console.log(u);
-                axios.post("http://localhost:5000/login").then(res => {
+                axios.post(`${process.env.REACT_APP_BASE_URL}/login`).then(res => {
                     console.log("asdasdsadsad", res.data);
                 })
                     .catch(err => {
@@ -45,7 +45,7 @@ class Login extends Component {
             .then((u) => {
 
                 console.log(u);
-                axios.post("http://localhost:5000/login", { uid: u.uid, email: u.email }).then(res => {
+                axios.post(`${process.env.REACT_APP_BASE_URL}/login`, { uid: u.uid, email: u.email }).then(res => {
                     console.log("asdasdsadsad", res);
                 }).catch(err => { console.error(err) })
 
@@ -93,7 +93,7 @@ class Login extends Component {
                 <div className="simple-login-container">
                     <div className="row">
                         <div className="col-md-12 text-center">
-                            <Link to='/'><img src="/images/logo.png" alt="logo" width="100%" /></Link>
+                            <img className="logo" src="/images/logo.png" alt="logo" width="100%" />
                         </div>
                     </div>
                     <div className="row">
