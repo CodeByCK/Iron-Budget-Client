@@ -5,6 +5,7 @@ import TopNav from './TopNav/TopNav'
 import Groups from './Groups/Groups'
 import fire from 'firebase'
 import axios from 'axios'
+import Chart from './Chart/Chart'
 class Home extends Component {
 
 
@@ -13,7 +14,7 @@ class Home extends Component {
         budget: null,
         groups: [],
         itemRefresh: false,
-        groupAmount: null,
+        groupAmount: null
 
     }
 
@@ -79,7 +80,7 @@ class Home extends Component {
 
         axios.get(`${process.env.REACT_APP_BASE_URL}/api/Group/${userId}`)
             .then(groups => {
-                console.log(groups, "dsadasdasdasdsa-das=d-asd=-asd=-asd=as-das=d-asd=-asdas=-dasd=-asd=as-dasd=-")
+                // console.log(groups, "dsadasdasdasdsa-das=d-asd=-asd=-asd=as-das=d-asd=-asdas=-dasd=-asd=as-dasd=-")
                 // this.setState({
                 //     groups: groups.data.response
                 // })
@@ -149,6 +150,7 @@ class Home extends Component {
                         </div>
                         <div className="col-md-7">
                             <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
+                            <Chart groups={this.state.groups} items={this.state.groups.items} />
                             <Income user={this.props.user} onClick={this.retrieveAmount} />
 
                             {this.state.groups.map((group, i) => {
