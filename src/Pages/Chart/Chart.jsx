@@ -3,25 +3,37 @@ import { Doughnut } from 'react-chartjs-2';
 
 
 class Chart extends Component {
+
+
+
+
+  getTotals = () => {
+    let groupTotal = []
+    this.props.groups.map((group, i) => {
+      groupTotal[i] = groupTotal[i] ? groupTotal[i] : 0;
+      group.items.map(item => {
+        groupTotal[i] += item.planned
+      })
+    })
+    return groupTotal
+  }
+
+
+
+
   render() {
-
-    // this.props.groups.map(group => {
-    //   group.items.map(item => {
-    //     // console.log(item.planned)
-    //     return item.planned
-    //   }
-    //   )
-    // })
-
-
     const data = {
       labels: this.props.groups.map(group => group.name),
       datasets: [{
-        data: [300, 400, 200, 300], //! NEED AN ARRAY OF TOTAL AMOUNT.PLANNED FROM EACH GROUP HERE-----
+        data: this.getTotals(),
         backgroundColor: [
           '#FF6384',
           '#36A2EB',
-          '#FFCE56'
+          '#FFCE56',
+          '#FF6656',
+          '#FFA75B',
+          '#44C94C',
+          '#9A3AA7'
         ],
         hoverBackgroundColor: [
           '#FF6384',
@@ -31,10 +43,11 @@ class Chart extends Component {
       }]
     };
 
-
     return (
       <Fragment>
-        <Doughnut data={data} />
+        <Doughnut
+          data={data}
+        />
       </Fragment>
     );
   }
