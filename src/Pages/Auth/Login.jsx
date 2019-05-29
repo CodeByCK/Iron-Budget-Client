@@ -93,7 +93,7 @@ class Login extends Component {
                 <div className="simple-login-container">
                     <div className="row">
                         <div className="col-md-12 text-center">
-                            <img className="logo" src="/images/logo.png" alt="logo" width="100%" />
+                            <img src="/images/logo.png" alt="logo" width="100%" />
                         </div>
                     </div>
                     <div className="row">

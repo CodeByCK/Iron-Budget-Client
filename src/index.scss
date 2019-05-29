@@ -29,9 +29,14 @@ body{
 }
 
 .simple-login-container .btn-login{
-  background-color:#38B449;
+  background-color:#FFCE56;
   color:#fff;
 }
+
+.btn-login:hover{
+  background-color: rgb(255, 188, 19)
+}
+
 
 
 .or-box

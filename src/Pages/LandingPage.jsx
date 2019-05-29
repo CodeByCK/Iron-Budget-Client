@@ -26,9 +26,10 @@ class LandingPage extends Component {
                 <div id="body">
                     <nav className="navbar navbar-dark bg-transparent">
                         <div className="navbar-brand">
-                            <img className="logo" src="/images/logo.png" alt="logo" />
+                            <img className="logo" src="/images/logo_landing.png" alt="logo" />
                         </div>
-                        <button className="btn btn-primary">Start</button>
+                        <Link to='/login'><button className="login">LOG IN</button></Link>
+                        {/* <span className="login">SIGN UP</span> */}
                     </nav>
 
                     <header className="masthead">
@@ -36,8 +37,12 @@ class LandingPage extends Component {
                             <div className="row">
                                 <div className="col-lg-7 my-auto">
                                     <div className="header-content mx-auto">
-                                        <h1 className="mb-5">New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
-                                        <a href="#download" className="btn btn-outline btn-xl">Start Now for Free!</a>
+                                        <h1 className="mb-3">
+                                            Join the millions of people who are saving money
+                                            with Iron Budget!
+                                            </h1>
+                                        {/* <button className="StartButton"> Start Now!</button> */}
+                                        <Link to='/signup'><button type="button" class="btn btn-warning text-white">Start Now!</button></Link>
                                     </div>
                                 </div>
                                 <div className="col-lg-5 my-auto">

@@ -61,10 +61,6 @@ class Chart extends Component {
       title: {
         display: true,
         text: 'PLANNED BUDGET',
-      },
-      animation: {
-        duration: 1000,
-        easing: 'easeInSine'
       }
     }
 
