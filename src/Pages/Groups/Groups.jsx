@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import ContentEditable from "react-sane-contenteditable";
 import Items from './Items'
 import axios from 'axios';
 
@@ -134,7 +135,38 @@ class Groups extends Component {
     })
   }
 
+  // handleEnter = (e) => {
+  //   let regex= /[^A-Za-z0-9]/
 
+  //   if (e.charCode == 13) {
+  //     e.preventDefault()
+  //     this.editGroup(e)
+  //   }
+  // }
+
+  handleEnter = (e) => {
+    const keyCode = e.keyCode || e.which
+    const string = String.fromCharCode(keyCode).toUpperCase()
+    const regex = /[A-Za-z0-9 ]/
+
+    if (!regex.test(string)) {
+      e.returnValue = false
+      if (e.preventDefault) e.preventDefault()
+    }
+  }
+
+
+  //For Items Component
+  handleEnterNumberOnly = (e) => {
+    const keyCode = e.keyCode || e.which
+    const string = String.fromCharCode(keyCode)
+    const regex = /[0-9]|\./
+
+    if (!regex.test(string)) {
+      e.returnValue = false
+      if (e.preventDefault) e.preventDefault()
+    }
+  }
 
 
 
@@ -155,18 +187,36 @@ class Groups extends Component {
                   </i>
                   <strong>
 
-                    <div style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
+                    {/* <div style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
                       data-toggle="collapse"
                       data-target={`#groupCollapse${this.props.i}`}
                       onClick={this.collapse}
                       onBlur={this.editGroup}
                       id={this.props.group._id}
+                      onKeyPress={this.handleEnter}
                       contentEditable="true"
                       name="name">
 
                       {this.props.group.name}
 
-                    </div>
+                    </div> */}
+
+                    {/* //! CONTENT EDITABLE COMPONENT */}
+                    <ContentEditable
+                      style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
+
+                      content={this.props.group.name}
+                      data-toggle="collapse"
+                      data-target={`#groupCollapse${this.props.i}`}
+                      onClick={this.collapse}
+                      onBlur={this.editGroup}
+                      id={this.props.group._id}
+                      onKeyPress={this.handleEnter}
+                      name="name"
+                      maxLength={8}
+                      multiLine={false}
+                    />
+                    {/* //! CONTENT EDITABLE COMPONENT */}
                   </strong>
                 </div>
 
@@ -193,7 +243,7 @@ class Groups extends Component {
 
                 {this.state.items.map((item, i) => {
                   return (
-                    <Items {...item} edit={this.editItem} delete={this.deleteItem} />
+                    <Items {...item} edit={this.editItem} delete={this.deleteItem} handleEnter={this.handleEnter} handleNumber={this.handleEnterNumberOnly} />
                   )
                 })}
 
@@ -211,8 +261,10 @@ class Groups extends Component {
                       <input
                         type="text"
                         name="itemName"
+                        maxlength="10"
                         placeholder="ex. Gas"
                         defaultValue={this.state.itemName}
+                        onKeyPress={this.handleEnter}
                         onChange={this.eventHandler}
                         autoComplete="off" />
 

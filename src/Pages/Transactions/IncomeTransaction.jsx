@@ -63,6 +63,7 @@ class IncomeTransaction extends Component {
   render() {
     return (
       <Fragment>
+        <h5 className="text-center">Add Income</h5>
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
             <input

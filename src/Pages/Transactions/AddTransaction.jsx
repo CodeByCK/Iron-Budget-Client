@@ -6,7 +6,7 @@ class AddTransaction extends Component {
 
   state = {
     amount: null,
-    date: null,
+    date: new Date(),
     items: [],
     name: '',
     itemId: '',
@@ -51,6 +51,7 @@ class AddTransaction extends Component {
   render() {
     return (
       <Fragment>
+        <h5 className="text-center">Add Expense</h5>
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
             <input

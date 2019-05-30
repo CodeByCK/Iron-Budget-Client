@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import ContentEditable from "react-sane-contenteditable";
 import axios from "axios"
 
 class Income extends Component {
@@ -130,6 +131,7 @@ class Income extends Component {
   updateIncomeAmount = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/api/paychecks/${this.state.user}`)
       .then(paychecks => {
+        console.log(paychecks, 3434)
         this.setState({
           incomes: paychecks.data.response
         }, () => this.totalReceived())
@@ -183,6 +185,31 @@ class Income extends Component {
   }
 
 
+  handleEnter = (e) => {
+    const keyCode = e.keyCode || e.which
+    const string = String.fromCharCode(keyCode).toUpperCase()
+    const regex = /[A-Za-z0-9 ]/
+
+    if (!regex.test(string)) {
+      e.returnValue = false
+      if (e.preventDefault) e.preventDefault()
+    }
+  }
+
+
+
+  handleEnterNumberOnly = (e) => {
+    const keyCode = e.keyCode || e.which
+    const string = String.fromCharCode(keyCode)
+    const regex = /[0-9]|\./
+
+    if (!regex.test(string)) {
+      e.returnValue = false
+      if (e.preventDefault) e.preventDefault()
+    }
+  }
+
+
 
 
 
@@ -232,33 +259,57 @@ class Income extends Component {
                             onClick={this.deleteIncome}>
                           </i>
                         </div>
-                        <div className="col-4"
+                        {/* <div 
+                        className="col-4"
                           contentEditable="true"
                           data="name"
                           onBlur={this.editIncome}
                           id={paychecks._id}
-                          name="name">
+                          name="name"
+                          >
 
                           {paychecks.name}
 
-                        </div>
+                        </div> */}
 
-                        <div
+                        <ContentEditable
+                          className="col-4"
+                          data="name"
+                          onBlur={this.editIncome}
+                          onKeyPress={this.handleEnter}
+                          id={paychecks._id}
+                          name="name"
+                          content={paychecks.name}
+                          maxLength={10}
+                          multiLine={false}
+                        />
+
+                        {/* <div
                           className="col text-right dollar"
                           contentEditable="true"
                           onBlur={this.editIncome}
                           id={paychecks._id}
-                          name="planned" >
+                          name="planned" 
+                          >
 
                           {Number(paychecks.planned).toFixed(2)}
 
-                        </div>
+                        </div> */}
+
+                        <ContentEditable
+                          className="col text-right dollar"
+                          onBlur={this.editIncome}
+                          id={paychecks._id}
+                          name="planned"
+                          onKeyPress={this.handleEnterNumberOnly}
+                          content={Number(paychecks.planned).toFixed(2)}
+                          maxLength={10}
+                          multiLine={false}
+                        />
+
                         <div className="col text-right"
                           id={paychecks._id}
-                          style={{
-                            color:
-                              "green"
-                          }}>
+                          style={{ color: "green" }}>
 
                           $ {this.totalReceived(paychecks._id).toFixed(2)}
 
@@ -278,10 +329,13 @@ class Income extends Component {
                   <div className="row mb-2">
                     <div className="col-4">
 
-                      <input type="text"
+                      <input
+                        type="text"
                         name="name"
+                        maxlength="10"
                         placeholder="Paycheck #"
                         value={this.state.name}
+                        onKeyPress={this.handleEnter}
                         onChange={this.eventHandler}
                         required
                         autoComplete="off" />
@@ -290,10 +344,13 @@ class Income extends Component {
 
                     <div className="col col-sm-4 text-right" >
 
-                      <input className="text-right"
-                        type="number" name="planned"
+                      <input
+                        className="text-right"
+                        type="number"
+                        name="planned"
                         step="any"
                         min="0"
+                        max="1000000000"
                         placeholder="0.00"
                         value={this.state.planned}
                         onChange={this.eventHandler}

@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import ContentEditable from "react-sane-contenteditable";
+
 import axios from 'axios'
 
 class Items extends Component {
@@ -56,7 +58,7 @@ class Items extends Component {
             </i>
           </div>
 
-          <div
+          {/* <div
             className="col-4"
             contentEditable="true"
             data="name"
@@ -64,9 +66,21 @@ class Items extends Component {
             id={this.props._id}
             name="name">
             {this.props.name}
-          </div>
+          </div> */}
 
-          <div
+          <ContentEditable
+            className="col-4"
+            content={this.props.name}
+            data="name"
+            onBlur={this.props.edit}
+            id={this.props._id}
+            onKeyPress={this.props.handleEnter}
+            name="name"
+            maxLength={10}
+            multiLine={false}
+          />
+
+          {/* <div
             className="col text-right dollar"
             contentEditable="true"
             onBlur={this.props.edit}
@@ -75,7 +89,19 @@ class Items extends Component {
 
             {Number(this.props.planned).toFixed(2)}
 
-          </div>
+          </div> */}
+
+          <ContentEditable
+            className="col text-right dollar"
+            content={Number(this.props.planned).toFixed(2)}
+            onBlur={this.props.edit}
+            id={this.props._id}
+            onKeyPress={this.props.handleNumber}
+            name="planned"
+            maxLength={10}
+            multiLine={false}
+          />
+
           <div className="col text-right"
             style={{
               color: Number(this.state.spent * -1) > this.props.planned ? "red" : "green",
