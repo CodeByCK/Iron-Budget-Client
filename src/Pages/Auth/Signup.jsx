@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom'
 import firebase, { googleProvider, facebookProvider } from "../../config/Fire";
+import Fade from 'react-reveal/Fade';
+
 
 class Signup extends Component {
 
@@ -81,56 +83,59 @@ class Signup extends Component {
     render() {
         return (
             <Fragment>
+
                 {this.state.signedUp ? <Redirect to="/" /> : false}
-                <div className="simple-login-container">
-                    <div className="row">
-                        <div className="col-md-12 text-center">
-                            <Link to='/'><img src="/images/logo.png" alt="logo" width="100%" /></Link>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 text-center text-secondary">
-                            <h2>Create an account</h2>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input value={this.state.email} onChange={this.handleChange} className="form-control" type="email" name="email" placeholder="Enter Email" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input value={this.state.password} onChange={this.handleChange} className="form-control" type="password" name="password" placeholder="Password" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input value={this.state.confirmPassword} onChange={this.handleChange} className="form-control" type="password" name="confirmPassword" placeholder="Verify Password" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input onClick={this.signup} type="submit" className="btn btn-block btn-login" placeholder="Enter your Password" />
-                            {this.state.message}
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <div className="or-box">
-                                <span className="or">OR</span>
-                            </div>
-                            <button onClick={this.facebookLogin} className="btn btn-block btn-primary mb-3" type="button"><span><i className="fab fa-facebook-f"></i> Create with Facebook</span> </button>
-                            <button onClick={this.googleLogin} className="btn btn-block btn-danger" type="button"><span><i className="fab fa-google-plus-g"></i> Create with Google+</span> </button>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group text-center">
-                            <div className="or-box">
-                                <span>Have an account? <Link to="/login">Sign in now!</Link></span>
+                <Fade>
+                    <div className="simple-login-container">
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <Link to='/'><img src="/images/logo.png" alt="logo" width="100%" /></Link>
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col-md-12 text-center text-secondary">
+                                <h2>Create an account</h2>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input value={this.state.email} onChange={this.handleChange} className="form-control" type="email" name="email" placeholder="Enter Email" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input value={this.state.password} onChange={this.handleChange} className="form-control" type="password" name="password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input value={this.state.confirmPassword} onChange={this.handleChange} className="form-control" type="password" name="confirmPassword" placeholder="Verify Password" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input onClick={this.signup} type="submit" className="btn btn-block btn-login" placeholder="Enter your Password" />
+                                {this.state.message}
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <div className="or-box">
+                                    <span className="or">OR</span>
+                                </div>
+                                <button onClick={this.facebookLogin} className="btn btn-block btn-primary mb-3" type="button"><span><i className="fab fa-facebook-f"></i> Create with Facebook</span> </button>
+                                <button onClick={this.googleLogin} className="btn btn-block btn-danger" type="button"><span><i className="fab fa-google-plus-g"></i> Create with Google+</span> </button>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group text-center">
+                                <div className="or-box">
+                                    <span>Have an account? <Link to="/login">Sign in now!</Link></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </Fade>
             </Fragment>
         );
     }

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, Route } from "react-router-dom";
 import ReactLoading from "react-loading";
-
 //Pages
 import Login from './Pages/Auth/Login'
 import Signup from './Pages/Auth/Signup'

@@ -6,6 +6,10 @@ import Groups from './Groups/Groups'
 import fire from 'firebase'
 import axios from 'axios'
 import Chart from './Chart/Chart'
+import Fade from 'react-reveal/Fade';
+
+
+
 class Home extends Component {
 
 
@@ -142,44 +146,53 @@ class Home extends Component {
             <Fragment>
 
                 <SideNav logout={this.logout} />
+                <Fade>
 
-                <div className="container-fluid">
+                    <div className="container-fluid">
 
-                    <div className="row">
-                        <div className="col-md-2">
-                        </div>
-                        <div className="col-md-7">
-                            <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
-                            <Chart groups={this.state.groups} items={this.state.groups.items} />
-                            <Income user={this.props.user} onClick={this.retrieveAmount} />
-                            {/* <div className="card mb-3 p-3">                            <Chart groups={this.state.groups} items={this.state.groups.items} />
+                        <div className="row">
+                            <div className="col-md-2">
+                            </div>
+                            <div className="col-md-7">
+                                <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
+                                <Chart groups={this.state.groups} items={this.state.groups.items} />
+                                <Income user={this.props.user} onClick={this.retrieveAmount} />
+                                {/* <div className="card mb-3 p-3">                            <Chart groups={this.state.groups} items={this.state.groups.items} />
                             </div> */}
 
-                            {this.state.groups.map((group, i) => {
+                                {this.state.groups.map((group, i) => {
 
-                                // console.log('froup', group)
-                                return (<Groups calculateTotal={this.calculateTotal} groupAmount={this.retrieveGroupAmount}
-                                    deleteGroup={this.deleteGroup}
-                                    reload={this.getGroup}
-                                    group={group}
-                                    i={i}
-                                    user={this.props.user} />)
-                            })}
+                                    // console.log('froup', group)
+                                    return (
 
-                            <div className="card addGroup mb-3">
-                                <div className="card-body">
-                                    <span style={{ cursor: "pointer" }}
-                                        onClick={this.createGroup}>
-                                        <i className="fas fa-plus text"></i>
-                                        <strong>Add Group</strong>
-                                    </span>
+                                        <Groups
+
+                                            calculateTotal={this.calculateTotal}
+                                            groupAmount={this.retrieveGroupAmount}
+                                            deleteGroup={this.deleteGroup}
+                                            reload={this.getGroup}
+                                            group={group}
+                                            i={i}
+                                            user={this.props.user} />
+
+                                    )
+                                })}
+
+                                <div className="card addGroup mb-3">
+                                    <div className="card-body">
+                                        <span style={{ cursor: "pointer" }}
+                                            onClick={this.createGroup}>
+                                            <i className="fas fa-plus text"></i>
+                                            <strong>Add Group</strong>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-md-3">
+                            <div className="col-md-3">
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Fade>
                 {/* <div className="text-center"><h1>{this.state.budget} left to budget</h1></div> */}
             </Fragment>
         );

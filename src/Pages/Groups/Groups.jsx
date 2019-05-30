@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import ContentEditable from "react-sane-contenteditable";
 import Items from './Items'
 import axios from 'axios';
+import Fade from 'react-reveal/Fade';
+
 
 class Groups extends Component {
   state = {
@@ -174,20 +176,21 @@ class Groups extends Component {
   render() {
     return (
       <Fragment>
-        <div key={this.props.i} className="card incomeCard mb-3">
-          <div className="card-body">
-            <div className="row">
-              <div className="col-4">
-                <div className='row'>
-                  <i data-toggle="collapse"
-                    data-target={`#groupCollapse${this.props.i}`}
-                    onClick={this.collapse}
-                    style={{ cursor: "pointer", color: "orange", marginLeft: "13px", marginRight: "5px", marginTop: "5px" }}
-                    className={`fas fa-chevron-${this.state.collapsed === true ? 'down' : 'up'}`}>
-                  </i>
-                  <strong>
+        <Fade>
+          <div key={this.props.i} className="card incomeCard mb-3">
+            <div className="card-body">
+              <div className="row">
+                <div className="col-4">
+                  <div className='row'>
+                    <i data-toggle="collapse"
+                      data-target={`#groupCollapse${this.props.i}`}
+                      onClick={this.collapse}
+                      style={{ cursor: "pointer", color: "orange", marginLeft: "13px", marginRight: "5px", marginTop: "5px" }}
+                      className={`fas fa-chevron-${this.state.collapsed === true ? 'down' : 'up'}`}>
+                    </i>
+                    <strong>
 
-                    {/* <div style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
+                      {/* <div style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
                       data-toggle="collapse"
                       data-target={`#groupCollapse${this.props.i}`}
                       onClick={this.collapse}
@@ -201,115 +204,115 @@ class Groups extends Component {
 
                     </div> */}
 
-                    {/* //! CONTENT EDITABLE COMPONENT */}
-                    <ContentEditable
-                      style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
+                      {/* //! CONTENT EDITABLE COMPONENT */}
+                      <ContentEditable
+                        style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
 
-                      content={this.props.group.name}
-                      data-toggle="collapse"
-                      data-target={`#groupCollapse${this.props.i}`}
-                      onClick={this.collapse}
-                      onBlur={this.editGroup}
-                      id={this.props.group._id}
-                      onKeyPress={this.handleEnter}
-                      name="name"
-                      maxLength={8}
-                      multiLine={false}
-                    />
-                    {/* //! CONTENT EDITABLE COMPONENT */}
-                  </strong>
-                </div>
-
-
-
-              </div>
-              <div className="col col-sm-4 text-right" >
-                <strong>Planned</strong>
-              </div>
-              <div className="col col-sm-4 text-right">
-                <strong>Spent</strong>
-                <i style={{ float: "right", marginLeft: "10px", paddingLeft: "10px", color: "red", cursor: "pointer" }}
-                  className="fas fa-minus-circle" id={this.props.group._id} onClick={this.props.deleteGroup}>
-                </i>
-              </div>
-            </div>
-            <div className="collapse show" id={`groupCollapse${this.props.i}`}>
-              <div className="card mt-2" style={{ border: "none" }}>
-
-
-
-
-                {/* //! ========================= MAPPING ITEMS ====================================== */}
-
-                {this.state.items.map((item, i) => {
-                  return (
-                    <Items {...item} edit={this.editItem} delete={this.deleteItem} handleEnter={this.handleEnter} handleNumber={this.handleEnterNumberOnly} />
-                  )
-                })}
-
-
-
-
-                {/* //? ========================= FORM SECTION ====================================== */}
-                <form
-                  className="incomeForm" style={{ display: this.state.form === true ? "inline-block" : "none" }}
-                  onSubmit={this.createItem}>
-
-                  <div className="row mb-2">
-                    <div className="col-4">
-
-                      <input
-                        type="text"
-                        name="itemName"
-                        maxlength="10"
-                        placeholder="ex. Gas"
-                        defaultValue={this.state.itemName}
-                        onKeyPress={this.handleEnter}
-                        onChange={this.eventHandler}
-                        autoComplete="off" />
-
-                    </div>
-
-                    <div className="col col-sm-4 text-right" >
-
-                      <input
-                        className="text-right"
-                        type="number"
-                        name="itemPlanned"
-                        min="0"
-                        step="any"
-                        placeholder="0.00"
-                        defaultValue={this.state.planned}
-                        onChange={this.eventHandler}
-                        autoComplete="off" />
-
-                    </div>
-                    <div className="col col-sm-4 text-right">
-                      <button
+                        content={this.props.group.name}
+                        data-toggle="collapse"
+                        data-target={`#groupCollapse${this.props.i}`}
+                        onClick={this.collapse}
+                        onBlur={this.editGroup}
                         id={this.props.group._id}
-                        onClick={this.createItem}
-                        className="fas fa-check"
-                        type="submit"
-                        style={{ color: "#0097a8", fontSize: "25px", borderRadius: "20px" }}>
-                      </button>
-                    </div>
+                        onKeyPress={this.handleEnter}
+                        name="name"
+                        maxLength={8}
+                        multiLine={false}
+                      />
+                      {/* //! CONTENT EDITABLE COMPONENT */}
+                    </strong>
                   </div>
-                </form>
 
-                {/* //? ==================Add Item SECTION ====================================== */}
-                <div className="row">
-                  <div className="col-4">
-                    <p style={{ cursor: "pointer", color: "#0097a8" }}
-                      onClick={this.showForm}>
-                      <i className="fas fa-plus text"></i>
-                      <strong> Add Item</strong></p>
+
+
+                </div>
+                <div className="col col-sm-4 text-right" >
+                  <strong>Planned</strong>
+                </div>
+                <div className="col col-sm-4 text-right">
+                  <strong>Spent</strong>
+                  <i style={{ float: "right", marginLeft: "10px", paddingLeft: "10px", color: "red", cursor: "pointer" }}
+                    className="fas fa-minus-circle" id={this.props.group._id} onClick={this.props.deleteGroup}>
+                  </i>
+                </div>
+              </div>
+              <div className="collapse show" id={`groupCollapse${this.props.i}`}>
+                <div className="card mt-2" style={{ border: "none" }}>
+
+
+
+
+                  {/* //! ========================= MAPPING ITEMS ====================================== */}
+
+                  {this.state.items.map((item, i) => {
+                    return (
+                      <Items {...item} edit={this.editItem} delete={this.deleteItem} handleEnter={this.handleEnter} handleNumber={this.handleEnterNumberOnly} />
+                    )
+                  })}
+
+
+
+
+                  {/* //? ========================= FORM SECTION ====================================== */}
+                  <form
+                    className="incomeForm" style={{ display: this.state.form === true ? "inline-block" : "none" }}
+                    onSubmit={this.createItem}>
+
+                    <div className="row mb-2">
+                      <div className="col-4">
+
+                        <input
+                          type="text"
+                          name="itemName"
+                          maxlength="10"
+                          placeholder="ex. Gas"
+                          defaultValue={this.state.itemName}
+                          onKeyPress={this.handleEnter}
+                          onChange={this.eventHandler}
+                          autoComplete="off" />
+
+                      </div>
+
+                      <div className="col col-sm-4 text-right" >
+
+                        <input
+                          className="text-right"
+                          type="number"
+                          name="itemPlanned"
+                          min="0"
+                          step="any"
+                          placeholder="0.00"
+                          defaultValue={this.state.planned}
+                          onChange={this.eventHandler}
+                          autoComplete="off" />
+
+                      </div>
+                      <div className="col col-sm-4 text-right">
+                        <button
+                          id={this.props.group._id}
+                          onClick={this.createItem}
+                          className="fas fa-check"
+                          type="submit"
+                          style={{ color: "#0097a8", fontSize: "25px", borderRadius: "20px" }}>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+
+                  {/* //? ==================Add Item SECTION ====================================== */}
+                  <div className="row">
+                    <div className="col-4">
+                      <p style={{ cursor: "pointer", color: "#0097a8" }}
+                        onClick={this.showForm}>
+                        <i className="fas fa-plus text"></i>
+                        <strong> Add Item</strong></p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
+        </Fade>
       </Fragment>
     );
   }

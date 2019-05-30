@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import firebase, { googleProvider, facebookProvider } from "../../config/Fire";
 import { Link, Redirect } from 'react-router-dom'
 import axios from "axios";
+import Fade from 'react-reveal/Fade';
 
 class Login extends Component {
 
@@ -89,51 +90,54 @@ class Login extends Component {
     render() {
         return (
             <Fragment>
+
                 {this.state.loggedIn ? <Redirect to="/" /> : false}
-                <div className="simple-login-container">
-                    <div className="row">
-                        <div className="col-md-12 text-center">
-                            <img src="/images/logo.png" alt="logo" width="100%" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 text-center text-secondary">
-                            <h2>Sign In</h2>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input value={this.state.email} onChange={this.handleChange} className="form-control" type="email" name="email" placeholder="Enter Email" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input value={this.state.password} onChange={this.handleChange} className="form-control" type="password" name="password" placeholder="Password" />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <input onClick={this.login} type="submit" className="btn btn-block btn-login" />
-                            {this.state.message}
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group">
-                            <div className="or-box">
-                                <span class="or">OR</span>
-                            </div>
-                            <button onClick={this.facebookLogin} className="btn btn-block btn-primary mb-3" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
-                            <button onClick={this.googleLogin} className="btn btn-block btn-danger" type="button"><span><i className="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 form-group text-center">
-                            <div className="or-box">
-                                <span>New to Iron Budget? <Link to="/signup">Sign up now!</Link></span>
+                <Fade>
+                    <div className="simple-login-container">
+                        <div className="row">
+                            <div className="col-md-12 text-center">
+                                <img src="/images/logo.png" alt="logo" width="100%" />
                             </div>
                         </div>
+                        <div className="row">
+                            <div className="col-md-12 text-center text-secondary">
+                                <h2>Sign In</h2>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input value={this.state.email} onChange={this.handleChange} className="form-control" type="email" name="email" placeholder="Enter Email" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input value={this.state.password} onChange={this.handleChange} className="form-control" type="password" name="password" placeholder="Password" />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <input onClick={this.login} type="submit" className="btn btn-block btn-login" />
+                                {this.state.message}
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group">
+                                <div className="or-box">
+                                    <span class="or">OR</span>
+                                </div>
+                                <button onClick={this.facebookLogin} className="btn btn-block btn-primary mb-3" type="button"><span><i className="fab fa-facebook-f"></i> Sign in with Facebook</span> </button>
+                                <button onClick={this.googleLogin} className="btn btn-block btn-danger" type="button"><span><i className="fab fa-google-plus-g"></i> Sign in with Google+</span> </button>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-12 form-group text-center">
+                                <div className="or-box">
+                                    <span>New to Iron Budget? <Link to="/signup">Sign up now!</Link></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </Fade>
             </Fragment>
         );
     }
