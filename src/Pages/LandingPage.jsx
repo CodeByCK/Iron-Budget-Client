@@ -18,21 +18,21 @@ class LandingPage extends Component {
     render() {
         return (
             <Fragment >
-                <Fade>
-                    {/* <div className="text-center">
+                {/* <div className="text-center">
                     <h1>LANDING PAGE</h1>
                     <Link to='/signup'><h1>SIGN UP</h1></Link>
                     <Link to='/login'><h1>LOG IN</h1></Link>
                 </div> */}
 
-                    <div id="body">
-                        <nav className="navbar navbar-dark bg-transparent">
-                            <div className="navbar-brand">
-                                <img className="logo" src="/images/logo_landing.png" alt="logo" />
-                            </div>
-                            <Link to='/login'><button className="login">LOG IN</button></Link>
-                            {/* <span className="login">SIGN UP</span> */}
-                        </nav>
+                <div id="body">
+                    <nav className="navbar navbar-dark bg-transparent">
+                        <div className="navbar-brand">
+                            <img className="logo" src="/images/logo_landing.png" alt="logo" />
+                        </div>
+                        <Link to='/login'><button className="login">LOG IN</button></Link>
+                        {/* <span className="login">SIGN UP</span> */}
+                    </nav>
+                    <Fade>
 
                         <header className="masthead">
                             <div className="container">
