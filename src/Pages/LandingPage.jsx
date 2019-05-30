@@ -74,8 +74,8 @@ class LandingPage extends Component {
                             </div>
                         </header>
 
-                    </div>
-                </Fade>
+                    </Fade>
+                </div>
 
 
 

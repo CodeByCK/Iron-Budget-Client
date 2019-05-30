@@ -102,8 +102,9 @@ header.masthead {
 .login{
     color: rgb(255, 255, 255);
     font-weight: 600;
-    margin-right: 50px;
-    font-size: 1.3em;
+    // margin-right:50px;
+    display: inline-block;
+    font-size: 1.2em;
 }
 
 .login:hover{
