@@ -58,16 +58,6 @@ class Items extends Component {
             </i>
           </div>
 
-          {/* <div
-            className="col-4"
-            contentEditable="true"
-            data="name"
-            onBlur={this.props.edit}
-            id={this.props._id}
-            name="name">
-            {this.props.name}
-          </div> */}
-
           <ContentEditable
             className="col-4"
             content={this.props.name}
@@ -79,17 +69,6 @@ class Items extends Component {
             maxLength={10}
             multiLine={false}
           />
-
-          {/* <div
-            className="col text-right dollar"
-            contentEditable="true"
-            onBlur={this.props.edit}
-            id={this.props._id}
-            name="planned">
-
-            {Number(this.props.planned).toFixed(2)}
-
-          </div> */}
 
           <ContentEditable
             className="col text-right dollar"

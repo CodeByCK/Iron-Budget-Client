@@ -35,29 +35,10 @@ class Home extends Component {
     }
 
 
-    //? ==================================================================================================
-    //! =====----=-=-=-=-=-=-=-----===== ONLY WORKS WHEN PAGE REFRESHES. =====----=-=-=-=-=-=-=-----=====
-    //? ==================================================================================================
 
-    // calculateTotal = () => {
-    //     let total = 0
-    //     console.log('calulateTotal')
-    //     this.state.groups.map((groups, i) => {
-    //         groups.items.map((item, i) => {
-    //             total += Number(item.planned)
-    //         })
-    //     })
 
-    //     this.setState({
-    //         groupAmount: total
-    //     }, () => this.setState({
-    //         budget: this.state.amount - this.state.groupAmount
-    //         // budget: Date.now() this works so my job is done here... but u
-    //     }))
-    //     //do your calc up there and then 
-    //     //setState down here after the loops 
-    // }
 
+    // Calculate total of items
     calculateTotal = () => {
         let total = 0
         console.log('calulateTotal')
@@ -70,24 +51,14 @@ class Home extends Component {
         this.setState({
             groupAmount: total
         })
-        //do your calc up there and then 
-        //setState down here after the loops 
     }
-    //? ==================================================================================================
-    //! =====----=-=-=-=-=-=-=-----==========----=-=-=-=-=-=-=-----==========----=-=-=-=-=-=-=-----=======
-    //? ==================================================================================================
 
 
 
     getGroup = () => {
         let userId = this.props.user
-
         axios.get(`${process.env.REACT_APP_BASE_URL}/api/Group/${userId}`)
             .then(groups => {
-                // console.log(groups, "dsadasdasdasdsa-das=d-asd=-asd=-asd=as-das=d-asd=-asdas=-dasd=-asd=as-dasd=-")
-                // this.setState({
-                //     groups: groups.data.response
-                // })
                 this.setState({
                     groups: groups.data.response
                 }, () => this.calculateTotal())
@@ -139,8 +110,6 @@ class Home extends Component {
 
 
     render() {
-
-        // console.log("FROM HOME============", this.state.user)
         return (
 
             <Fragment>
@@ -157,16 +126,10 @@ class Home extends Component {
                                 <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
                                 <Chart groups={this.state.groups} items={this.state.groups.items} />
                                 <Income user={this.props.user} onClick={this.retrieveAmount} />
-                                {/* <div className="card mb-3 p-3">                            <Chart groups={this.state.groups} items={this.state.groups.items} />
-                            </div> */}
 
                                 {this.state.groups.map((group, i) => {
-
-                                    // console.log('froup', group)
                                     return (
-
                                         <Groups
-
                                             calculateTotal={this.calculateTotal}
                                             groupAmount={this.retrieveGroupAmount}
                                             deleteGroup={this.deleteGroup}
@@ -174,7 +137,6 @@ class Home extends Component {
                                             group={group}
                                             i={i}
                                             user={this.props.user} />
-
                                     )
                                 })}
 
@@ -193,7 +155,6 @@ class Home extends Component {
                         </div>
                     </div>
                 </Fade>
-                {/* <div className="text-center"><h1>{this.state.budget} left to budget</h1></div> */}
             </Fragment>
         );
     }

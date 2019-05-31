@@ -15,7 +15,6 @@ class Groups extends Component {
     itemPlanned: '',
     groupId: '',
     form: false,
-    // spent: 0.00
   }
 
   collapse = () => {
@@ -188,21 +187,6 @@ class Groups extends Component {
                     className={`fas fa-chevron-${this.state.collapsed === true ? 'down' : 'up'}`}>
                   </i>
                   <strong>
-
-                    {/* <div style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
-                      data-toggle="collapse"
-                      data-target={`#groupCollapse${this.props.i}`}
-                      onClick={this.collapse}
-                      onBlur={this.editGroup}
-                      id={this.props.group._id}
-                      onKeyPress={this.handleEnter}
-                      contentEditable="true"
-                      name="name">
-
-                      {this.props.group.name}
-
-                    </div> */}
-
                     {/* //! CONTENT EDITABLE COMPONENT */}
                     <ContentEditable
                       style={{ width: "100%", display: "inline-block", cursor: "pointer" }}
@@ -221,9 +205,6 @@ class Groups extends Component {
                     {/* //! CONTENT EDITABLE COMPONENT */}
                   </strong>
                 </div>
-
-
-
               </div>
               <div className="col col-sm-4 text-right" >
                 <strong>Planned</strong>
@@ -238,9 +219,6 @@ class Groups extends Component {
             <div className="collapse show" id={`groupCollapse${this.props.i}`}>
               <div className="card mt-2" style={{ border: "none" }}>
 
-
-
-
                 {/* //! ========================= MAPPING ITEMS ====================================== */}
 
                 {this.state.items.map((item, i) => {
@@ -248,9 +226,6 @@ class Groups extends Component {
                     <Items {...item} edit={this.editItem} delete={this.deleteItem} handleEnter={this.handleEnter} handleNumber={this.handleEnterNumberOnly} />
                   )
                 })}
-
-
-
 
                 {/* //? ========================= FORM SECTION ====================================== */}
                 <form
@@ -311,7 +286,6 @@ class Groups extends Component {
             </div>
           </div>
         </div>
-
       </Fragment>
     );
   }

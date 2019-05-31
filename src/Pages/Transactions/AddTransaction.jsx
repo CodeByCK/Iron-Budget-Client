@@ -99,7 +99,7 @@ class AddTransaction extends Component {
               <option required selected>(Choose Budget Item)</option>
               {this.props.groups.map((groups, i) => {
                 return groups.items.map((item, i) => {
-                  console.log("============>", item)
+                  // console.log("============>", item)
                   return (
                     <option value={item._id} key={i}>{item.name}</option>
                   )

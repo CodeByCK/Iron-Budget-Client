@@ -52,7 +52,6 @@ class SearchTransaction extends Component {
   render() {
     return (
       <Fragment>
-        {/* <input type="search" onChange={this.getTransactions}></input> */}
         {this.state.transactions.map((item, i) => {
           return (
 

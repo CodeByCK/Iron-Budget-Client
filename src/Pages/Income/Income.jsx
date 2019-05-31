@@ -28,9 +28,6 @@ class Income extends Component {
   }
 
 
-
-
-
   //!================== {{ Form Handler }} =============================
 
 
@@ -250,7 +247,6 @@ class Income extends Component {
                 {this.state.incomes.map((paychecks, i) => {
                   return (
                     <Fragment>
-
                       {/* //? ================== MAPPING INCOMES SECTION ====================================== */}
                       <div className="row editActive">
                         <div className="trashIcon text-left">
@@ -259,18 +255,6 @@ class Income extends Component {
                             onClick={this.deleteIncome}>
                           </i>
                         </div>
-                        {/* <div 
-                        className="col-4"
-                          contentEditable="true"
-                          data="name"
-                          onBlur={this.editIncome}
-                          id={paychecks._id}
-                          name="name"
-                          >
-
-                          {paychecks.name}
-
-                        </div> */}
 
                         <ContentEditable
                           className="col-4"
@@ -283,18 +267,6 @@ class Income extends Component {
                           maxLength={10}
                           multiLine={false}
                         />
-
-                        {/* <div
-                          className="col text-right dollar"
-                          contentEditable="true"
-                          onBlur={this.editIncome}
-                          id={paychecks._id}
-                          name="planned" 
-                          >
-
-                          {Number(paychecks.planned).toFixed(2)}
-
-                        </div> */}
 
                         <ContentEditable
                           className="col text-right dollar"
