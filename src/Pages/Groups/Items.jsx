@@ -67,7 +67,6 @@ class Items extends Component {
             onKeyPress={this.props.handleEnter}
             name="name"
             maxLength={10}
-            multiLine={false}
           />
 
           <ContentEditable
@@ -78,7 +77,6 @@ class Items extends Component {
             onKeyPress={this.props.handleNumber}
             name="planned"
             maxLength={10}
-            multiLine={false}
           />
 
           <div className="col text-right"

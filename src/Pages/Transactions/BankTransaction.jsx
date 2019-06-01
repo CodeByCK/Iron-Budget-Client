@@ -21,7 +21,7 @@ class BankTransaction extends Component {
   render() {
     return (
       <Fragment>
-        <h5 className="text-center">Bank Transaction</h5>
+        <h5 className="text-center mt-2">Bank Transaction</h5>
         <PlaidLink
           clientName="Your app name"
           env="sandbox"

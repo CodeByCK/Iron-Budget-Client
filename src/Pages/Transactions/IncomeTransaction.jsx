@@ -63,7 +63,7 @@ class IncomeTransaction extends Component {
   render() {
     return (
       <Fragment>
-        <h5 className="text-center">Add Income</h5>
+        <h5 className="text-center mt-2">Add Income</h5>
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
             <input
@@ -107,7 +107,12 @@ class IncomeTransaction extends Component {
           </div>
 
           <div className="form-row mt-3">
-            <select name="incomeId" value={this.state.incomeId} onChange={this.eventHandler} className="form-control" required>
+            <select
+              name="incomeId"
+              value={this.state.incomeId}
+              onChange={this.eventHandler}
+              className="form-control"
+              required>
               <option required selected>(Choose Income Item)</option>
               {this.state.incomes.map((income, i) => {
                 return (

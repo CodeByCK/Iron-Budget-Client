@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x:hidden; 
 }
 
 code {
@@ -149,5 +150,18 @@ button{
 
 .modal-dialog {
   margin: 15vh auto 0px auto
+}
+
+
+.chartJs{
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .chartJs{
+    margin: 0 autp;
+    width:70%
+  }
 }
 

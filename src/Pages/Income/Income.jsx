@@ -265,7 +265,6 @@ class Income extends Component {
                           name="name"
                           content={paychecks.name}
                           maxLength={10}
-                          multiLine={false}
                         />
 
                         <ContentEditable
@@ -276,7 +275,6 @@ class Income extends Component {
                           onKeyPress={this.handleEnterNumberOnly}
                           content={Number(paychecks.planned).toFixed(2)}
                           maxLength={10}
-                          multiLine={false}
                         />
 
                         <div className="col text-right"

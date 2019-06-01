@@ -165,6 +165,7 @@ class Groups extends Component {
     if (!regex.test(string)) {
       e.returnValue = false
       if (e.preventDefault) e.preventDefault()
+
     }
   }
 

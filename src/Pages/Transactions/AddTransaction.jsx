@@ -51,7 +51,7 @@ class AddTransaction extends Component {
   render() {
     return (
       <Fragment>
-        <h5 className="text-center">Add Expense</h5>
+        <h5 className="text-center mt-2">Add Expense</h5>
         <form className="mt-3" onSubmit={this.createTransaction}>
           <div className="form-group">
             <input
