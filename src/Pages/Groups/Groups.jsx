@@ -108,6 +108,7 @@ class Groups extends Component {
         this.setState({
           items: itemCopy
         })
+        // alert('item deleted')
         this.props.calculateTotal()
         this.props.reload()
 
@@ -116,7 +117,6 @@ class Groups extends Component {
       }).catch(err => {
         // console.log(err)
       })
-    // this.forceUpdate()
   }
 
 
@@ -134,15 +134,6 @@ class Groups extends Component {
       [e.target.name]: e.target.value
     })
   }
-
-  // handleEnter = (e) => {
-  //   let regex= /[^A-Za-z0-9]/
-
-  //   if (e.charCode == 13) {
-  //     e.preventDefault()
-  //     this.editGroup(e)
-  //   }
-  // }
 
   handleEnter = (e) => {
     const keyCode = e.keyCode || e.which

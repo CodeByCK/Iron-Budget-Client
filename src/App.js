@@ -49,7 +49,7 @@ class App extends Component {
             <Fragment>
 
                 {this.state.user === null ? (
-                    <ReactLoading className="PageLoader" type="spinningBubbles" color="green" height={'14%'} width={'14%'} />
+                    <ReactLoading className="PageLoader" type="spinningBubbles" color="#36A2EB" height={'64px'} width={'64px'} />
                 ) : this.state.user === false ? (
                     <Fragment>
                         <Switch>

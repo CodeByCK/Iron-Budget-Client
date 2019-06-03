@@ -42,9 +42,12 @@ class SearchTransaction extends Component {
     axios.get(`${process.env.REACT_APP_BASE_URL}/api/deleteTransaction/${id}`)
       .then(() => {
         this.getTransactions()
+        this.props.reload()
+        // alert("deleted")
       }).catch(err => {
         console.log(err)
       })
+
   }
 
 

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ContentEditable from "react-sane-contenteditable";
+import { ProgressBar } from 'react-bootstrap'
 
 import axios from 'axios'
 
@@ -87,7 +88,11 @@ class Items extends Component {
             $ {Number(this.state.spent * -1).toFixed(2)}
           </div>
         </div>
-        <hr></hr>
+        {/* <hr></hr> */}
+        <ProgressBar
+          animated
+          now={Number(this.state.spent * -1).toFixed(2)}
+          max={Number(this.props.planned).toFixed(2)} />
       </Fragment>
     )
   }

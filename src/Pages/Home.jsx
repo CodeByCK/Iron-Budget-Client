@@ -123,11 +123,25 @@ class Home extends Component {
                             <div className="col-md-2">
                             </div>
                             <div className="col-md-8">
-                                <TopNav groupAmount={this.state.groupAmount} user={this.props.user} amount={this.state.amount} reload={this.getGroup} groups={this.state.groups} />
+                                <TopNav
+                                    groupAmount={this.state.groupAmount}
+                                    user={this.props.user}
+                                    amount={this.state.amount}
+                                    reload={this.getGroup}
+                                    groups={this.state.groups}
+                                />
+
                                 <div className="chartJs">
-                                    <Chart groups={this.state.groups} items={this.state.groups.items} />
+                                    <Chart
+                                        groups={this.state.groups}
+                                        items={this.state.groups.items}
+                                    />
                                 </div>
-                                <Income user={this.props.user} onClick={this.retrieveAmount} />
+
+                                <Income
+                                    user={this.props.user}
+                                    onClick={this.retrieveAmount}
+                                />
 
                                 {this.state.groups.map((group, i) => {
                                     return (
