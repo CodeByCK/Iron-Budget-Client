@@ -53,9 +53,10 @@ class App extends Component {
                 ) : this.state.user === false ? (
                     <Fragment>
                         <Switch>
+                            <Route exact path="/" component={LandingPage} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/signup" component={Signup} />
-                            <Route exact path="/" component={LandingPage} />
+
                         </Switch>
                     </Fragment>
                 ) : (

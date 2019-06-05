@@ -29,8 +29,8 @@ class BankTransaction extends Component {
           publicKey="614be98f819e9bd8d0db9abec1c08a"
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}>
-          Open Link and connect your bank!
-      </PlaidLink>
+          Link your bank account
+        </PlaidLink>
       </Fragment>
     );
   }
