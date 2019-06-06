@@ -13,10 +13,6 @@ class BankTransaction extends Component {
     // handle the case when your user exits Link
   }
 
-  componentDidMount() {
-
-  }
-
 
   render() {
     return (
