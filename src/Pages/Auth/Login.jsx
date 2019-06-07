@@ -20,7 +20,7 @@ class Login extends Component {
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
             .then((u) => {
-                console.log(u);
+                // console.log(u);
                 axios.post(`${process.env.REACT_APP_BASE_URL}/login`).then(res => {
                     console.log("asdasdsadsad", res.data);
                 })
@@ -45,7 +45,7 @@ class Login extends Component {
         firebase.auth().signInWithPopup(googleProvider)
             .then((u) => {
 
-                console.log(u);
+                // console.log(u);
                 axios.post(`${process.env.REACT_APP_BASE_URL}/login`, { uid: u.uid, email: u.email }).then(res => {
                     console.log("asdasdsadsad", res);
                 }).catch(err => { console.error(err) })
