@@ -5,13 +5,13 @@ import PlaidLink from 'react-plaid-link'
 class BankTransaction extends Component {
 
 
-  // handleOnSuccess(token, metadata) {
-  //   alert("YOU DID IT")
-  // }
+  handleOnSuccess(token, metadata) {
+    alert("YOU DID IT")
+  }
 
-  // handleOnExit() {
-  //   // handle the case when your user exits Link
-  // }
+  handleOnExit() {
+    // handle the case when your user exits Link
+  }
 
 
   render() {
